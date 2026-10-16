@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>من الذرات إلى الجسم الكامل - تطبيق التحضير للابغروت</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .highlight-material {
+            animation: pulseHighlight 2.5s ease-in-out;
+            border: 3px solid #3b82f6 !important;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4) !important;
+        }
+        @keyframes pulseHighlight {
+            0% { transform: scale(0.99); opacity: 0.8; }
+            50% { transform: scale(1.02); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col justify-between selection:bg-blue-200">
+
+    <!-- Header Navigation -->
+    <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-700 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
+                    <i class="fa-solid font-bold fa-dna text-xl text-yellow-300"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold leading-tight">من الذرات إلى الجسم الكامل</h1>
+                    <p class="text-xs text-blue-100 hidden sm:block">بيولوجيا الإنسان - مراجعة مكثفة للأرقام 1-30</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
+                    <i class="fa-solid fa-house text-xs"></i>
+                    <span>الرئيسية</span>
+                </button>
+                <button onclick="switchTab('study')" id="btn-study" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>المادة</span>
+                </button>
+                <button onclick="switchTab('quiz')" id="btn-quiz" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
+                    <i class="fa-solid fa-pen-to-square text-xs"></i>
+                    <span>الأسئلة</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 w-full flex-grow">
+
+        <!-- DASHBOARD VIEW -->
+        <section id="view-dashboard" class="space-y-6">
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-br from-indigo-600 to-blue-700 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -left-6 -bottom-6 opacity-10 text-9xl">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-yellow-400 text-slate-900 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">برنامج التحضير المكثف (6 ساعات)</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold">خطتك للنجاح في امتحان البيولوجيا</h2>
+                    <p class="text-slate-100 text-sm md:text-base leading-relaxed">
+                        مرحباً بك! تم تقسيم المادة والأجزاء العملية لليوم الأول واليوم الثاني بمعدل 3 ساعات لكل يوم. يغطي التطبيق كافة أسئلة العرض التقديمي (من سؤال 1 إلى 30).
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="startDay(1)" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-play text-xs"></i>
+                            <span>ابدأ اليوم الأول (الاتزان البدني)</span>
+                        </button>
+                        <button onclick="startDay(2)" class="bg-white/20 hover:bg-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-diagram-project text-xs"></i>
+                            <span>ابدأ اليوم الثاني (أجهزة الجسم)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats & Progress -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-bullseye text-blue-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-slate-800" id="stat-total-questions">30</div>
+                    <div class="text-xs text-slate-500 font-medium">مجموع الأسئلة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-emerald-600" id="stat-correct">0</div>
+                    <div class="text-xs text-slate-500 font-medium">إجابات صحيحة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-circle-xmark text-rose-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-rose-600" id="stat-wrong">0</div>
+                    <div class="text-xs text-slate-500 font-medium">إجابات خاطئة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-chart-pie text-indigo-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-indigo-600" id="stat-score">0%</div>
+                    <div class="text-xs text-slate-500 font-medium">النسبة المئوية</div>
+                </div>
+            </div>
+
+            <!-- Study Days Cards -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Day 1 Card -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">اليوم الأول - 3 ساعات</span>
+                        <i class="fa-solid fa-clock text-slate-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">التسلسل الهرمي والاتزان البدني</h3>
+                    <ul class="text-xs text-slate-600 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>التشريح، تجارب تاريخية ومستويات التنظيم</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>مفهوم الاتزان البدني والتغذية المرتدة السالبة</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>تنظيم درجة الحرارة ومستوى السكر في الدم</li>
+                    </ul>
+                    <button onclick="startDay(1)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-sm transition active:scale-95">
+                        دراسة مواد اليوم الأول
+                    </button>
+                </div>
+
+                <!-- Day 2 Card -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full">اليوم الثاني - 3 ساعات</span>
+                        <i class="fa-solid fa-clock text-slate-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-2">أجهزة الجسم والأمراض والاضطرابات</h3>
+                    <ul class="text-xs text-slate-600 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>تركيز على الهضم، التنفس، النقل، الليمفا، الإخراج</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>دراسة حالة مرض الكوليرا والاضطرابات</li>
+                        <li><i class="fa-solid fa-check text-emerald-500 ml-2"></i>مراجعة عامة وحل كافة أسئلة الامتحانات</li>
+                    </ul>
+                    <button onclick="startDay(2)" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-sm transition active:scale-95">
+                        دراسة مواد اليوم الثاني
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Reset Button -->
+            <div class="text-center pt-2">
+                <button onclick="resetProgress()" class="text-xs text-slate-400 hover:text-slate-600 transition underline">
+                    <i class="fa-solid fa-rotate-left ml-1"></i> إعادت ضبط التقدم والدرجات
+                </button>
+            </div>
+        </section>
+
+        <!-- STUDY MATERIAL VIEW (حומר) -->
+        <section id="view-study" class="hidden space-y-6">
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-sm sticky top-16 z-40">
+                <div class="flex items-center space-x-2 space-x-reverse overflow-x-auto py-1">
+                    <button onclick="filterMaterial('all')" id="filter-all" class="mat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-blue-600 text-white transition">الكل</button>
+                    <button onclick="filterMaterial('day1')" id="filter-day1" class="mat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">اليوم الأول</button>
+                    <button onclick="filterMaterial('day2')" id="filter-day2" class="mat-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">اليوم الثاني</button>
+                </div>
+                <div class="text-xs font-semibold text-slate-500">
+                    <i class="fa-solid fa-book-bookmark text-blue-500 ml-1"></i> المادة النظرية للتعليم
+                </div>
+            </div>
+
+            <!-- Material Sections Container -->
+            <div class="space-y-6" id="material-container">
+
+                <!-- SECTION 1: Intro & History -->
+                <div id="mat-sec-1" class="mat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-4" data-day="day1">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-md">قسم 1 - اليوم 1</span>
+                        <h3 class="text-lg font-bold text-slate-800">التاريخ والبدايات ومستويات التنظيم</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                        <p><strong>1. التشريح والتجارب التاريخية:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 mr-2">
+                            <li>قام الباحثون قديماً بتشريح الجثث للتعرف على أجهزة الجسم.</li>
+                            <li>في نهاية القرن 19 نجحت الجراحات بفضل استخدام المطهرات ومكافحة البكتيريا.</li>
+                            <li><strong>وليام بومانت (1785-1853):</strong> درس معدة جندي أمريكي مصاب بجرح مفتوح لتفحص الهضم.</li>
+                            <li><strong>مرينج ومينكوفسكي (1889):</strong> اكتشفا أسباب مرض السكري باستئصال البنكرياس من الكلاب.</li>
+                        </ul>
+
+                        <p class="pt-2"><strong>2. مستويات التنظيم في الجسم:</strong></p>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 flex flex-wrap gap-2 items-center justify-center">
+                            <span>ذرات</span> $\rightarrow$ 
+                            <span>مركبات عضوية/غير عضوية</span> $\rightarrow$ 
+                            <span>عضيات</span> $\rightarrow$ 
+                            <span>خلايا</span> $\rightarrow$ 
+                            <span>أنسجة</span> $\rightarrow$ 
+                            <span>أعضاء</span> $\rightarrow$ 
+                            <span>أجهزة</span> $\rightarrow$ 
+                            <span>الجسم الكامل</span>
+                        </div>
+
+                        <p class="pt-2"><strong>3. تكوين الجسم والوراثة:</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 mr-2">
+                            <li>ينشأ الجسم من خلية واحدة: <strong>البويضة المخصبة (اللاقحة / الزيجوت)</strong> المتكونة من تخصيب البويضة برأس الحيوان المنوي.</li>
+                            <li>تنقسم الخلية إلى 2، ثم 4، ثم 8، ثم تتمايز الخلايا لتكون الأنسجة والأعضاء.</li>
+                            <li><strong>غريغور مندل (1822-1884):</strong> مؤسس علم الوراثة، أجرى تجاربه على نبات البازلاء واكتشف القوانين الأساسية للوراثة.</li>
+                        </ul>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-end">
+                        <button onclick="goToQuizQuestion('q1')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+                            <i class="fa-solid fa-pen ml-1"></i> الانتقال لأسئلة هذا القسم (سؤال 1)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: Homeostasis & Negative Feedback -->
+                <div id="mat-sec-2" class="mat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-4" data-day="day1">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-md">قسم 2 - اليوم 1</span>
+                        <h3 class="text-lg font-bold text-slate-800">مبدأ الاتزان البدني والتغذية المرتدة السالبة</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                        <p><strong>1. تعريف الاتزان البدني (Homeostasis):</strong></p>
+                        <p class="bg-blue-50 border-r-4 border-blue-500 p-3 rounded-l-xl text-slate-800">
+                            هو قدرة الجسم على الحفاظ على بيئة داخلية مستقرة نسبياً وفي حدود ثابتة، رغم التغيرات المستمرة في البيئة الخارجية أو الفعاليات الداخلية.
+                        </p>
+
+                        <p class="pt-2"><strong>2. التغذية المرتدة السالبة (Negative Feedback):</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 mr-2">
+                            <li>تعمل معظم آليات الحفاظ على الاتزان البدني عن طريق التغذية المرتدة السالبة.</li>
+                            <li>عند حدوث انحراف في عامل معيّن (مثل ارتفاع الحرارة)، تعمل ردود الفعل العكسية على خفضه وإعادته للمستوى السليم، والعكس صحيح.</li>
+                            <li><strong>ملاحظة هامة:</strong> كلمة "سالبة" تشير إلى **الاتجاه العكسي للتعديل** وليس إلى تاثير سلبي على الجسم!</li>
+                        </ul>
+
+                        <p class="pt-2"><strong>3. مراكز المراقبة والمجسات الداخلية:</strong></p>
+                        <div class="bg-indigo-50/70 p-3.5 rounded-xl border border-indigo-100 text-xs space-y-2">
+                            <div class="font-bold text-indigo-900">مراحل استيعاب وتصحيح المعلومات:</div>
+                            <ol class="list-decimal list-inside space-y-1 text-indigo-800">
+                                <li>مجسات متخصصة تشعر بالتغير (مثل انخفاض ضغط الدم أو الحرارة).</li>
+                                <li>تنقل المجسات المعلومات لمركز المراقبة في الدماغ.</li>
+                                <li>يرسل مركز المراقبة تعليمات للأعضاء المستهدفة (عبر الأعصاب أو الهورمونات) لإعادة الوضع الطبيعي.</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-end gap-2">
+                        <button onclick="goToQuizQuestion('q3')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+                            <i class="fa-solid fa-pen ml-1"></i> أسئلة (3, 5, 8, 9, 10, 13)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: Thermoregulation & Glucose -->
+                <div id="mat-sec-3" class="mat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-4" data-day="day1">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-md">قسم 3 - اليوم 1</span>
+                        <h3 class="text-lg font-bold text-slate-800">تنظيم الحرارة ومستوى السكر في الدم</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                        <p><strong>1. حفظ حرارة الجسم (~37 درجة مئوية):</strong></p>
+                        <ul class="list-disc list-inside space-y-1.5 text-slate-600 mr-2">
+                            <li><strong>عند ارتفاع الحرارة (جهد/طقس حار):</strong> يفرز الجسم العرق (يبرد بالتبخر) وتتوسع الأوعية الدموية المحيطية بالقرب من الجلد لنقل الحرارة للخارج.</li>
+                            <li><strong>عند انخفاض الحرارة (البرد):</strong> يحدث الارتجاف (توليد حرارة بانقباض العضلات) وتتضيّق الأوعية الدموية المحيطية للحد من فقدان الحرارة (فيظهر الجلد شاحباً).</li>
+                            <li><strong>الخطر:</strong> ارتفاع الحرارة فوق 42°م يسبب تخثر وتغير شكل الإنزيمات والبروتينات وفقدان فعاليتها، بينما انخفاضها دون 32°م (هيبوترميا) يهدد الحياة.</li>
+                        </ul>
+
+                        <p class="pt-2"><strong>2. حفظ تركيز الجلوكوز في الدم:</strong></p>
+                        <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                            <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                                <span class="font-bold text-emerald-800 block mb-1">عند ارتفاع السكر (بعد الوجبة):</span>
+                                يفرز البنكرياس هورمون <strong>الإنسولين</strong>، مما يزيد من دخول الجلوكوز إلى الخلايا وتحويل الفائض لخلايا الكبد والعضلات.
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200">
+                                <span class="font-bold text-amber-800 block mb-1">عند انخفاض السكر (الصوم/الجهد):</span>
+                                يفرز البنكرياس هورمون <strong>الجلوكاجون</strong>، والذي يحفز تحليل الجلايكوجين المخزون في الكبد إلى جلوكوز ينطلق للدم.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-end gap-2">
+                        <button onclick="goToQuizQuestion('q4')" class="bg-blue-50 text-blue-700 hover:bg-blue-100 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+                            <i class="fa-solid fa-pen ml-1"></i> أسئلة (4, 6, 7, 14, 15, 17)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SECTION 4: Organ Systems Overview -->
+                <div id="mat-sec-4" class="mat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-4" data-day="day2">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-md">قسم 4 - اليوم 2</span>
+                        <h3 class="text-lg font-bold text-slate-800">أجهزة الجسم الرئيسية ووظائفها (Slides 57-77)</h3>
+                    </div>
+                    <div class="grid gap-3 text-xs text-slate-700">
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-utensils ml-1"></i> جهاز الهضم:</strong>
+                            يتكون من الفم، المريء، المعدة، الأمعاء الغليظة والدقيقة، والغدد الملحقة. وظيفته: استيعاب الغذاء، تقطيعه، تحليله لمركبات بسيطة، وامتصاصه.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-lungs ml-1"></i> جهاز التنفس:</strong>
+                            الأنف، البلعوم، الحنجرة، القصبة الهوائية، والرئتان. وظيفته: استيعاب الأكسجين من الهواء وإطلاق ثاني أكسيد الكربون.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-heart-pulse ml-1"></i> جهاز الدم والنقل:</strong>
+                            القلب، الأوعية الدموية، والدم (بلازما 55% + خلايا 45%: حمراء، بيضاء، وصفائح). وظيفته: نقل الأكسجين، الغذاء، الهورمونات، اليوريا إلى الكليتين، وتنظيم حرارة الجسم.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-shield-halved ml-1"></i> جهاز الليمفا والمناعة:</strong>
+                            أوعية ليمفاوية، سائل الليمفا، عقد ليمفاوية، الطحال، ونخاع العظم. وظيفته: إعادة السوائل المترشحة للدم، امتصاص الأحماض الدهنية في الأمعاء، والمناعة.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-filter ml-1"></i> جهاز الإخراج (البولي):</strong>
+                            الكليتان، الحالبان، المثانة، والأحليل. وظيفته: التخلص من اليوريا $CH_2(NH_2)_2$ والفضلات، والحفاظ على موازنة الماء والأملاح في الجسم.
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <strong class="text-blue-700 text-sm block mb-1"><i class="fa-solid fa-brain ml-1"></i> جهاز الأعصاب والهرمونات:</strong>
+                            الدماغ والحبل الشوكي والأعصاب المحيطية. أجهزة ربط وتنسيق تنقل السيالات والتعليمات وتفرز الهورمونات في الدم لأعضاء الهدف.
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-end gap-2">
+                        <button onclick="goToQuizQuestion('q2')" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+                            <i class="fa-solid fa-pen ml-1"></i> أسئلة (2, 16, 18)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- SECTION 5: Pathologies & Cases -->
+                <div id="mat-sec-5" class="mat-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-4" data-day="day2">
+                    <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+                        <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2.5 py-1 rounded-md">قسم 5 - اليوم 2</span>
+                        <h3 class="text-lg font-bold text-slate-800">الأمراض واضطرابات الاتزان البدني</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                        <p><strong>1. حدوث الأمراض:</strong></p>
+                        <p class="text-slate-600">
+                            تحدث الأمراض عندما تعجز آليات الإصلاح عن معالجة الانحرافات الكبيرة عن الاتزان البدني، أو بسبب الفيروسات، الجراثيم، السموم، الطفرات الوراثية، أو نقص الهورمونات.
+                        </p>
+
+                        <p class="pt-2"><strong>2. حالة مرض الكوليرا (Cholera):</strong></p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 mr-2 text-xs">
+                            <li>تسببه بكتيريا تصيب الجهاز الهضمي تؤدي لإسهال شديد يفقد الجسم حتى 20 لتر ماء يومياً.</li>
+                            <li><strong>الأعراض ردود الفعل:</strong> انخفاض ضغط الدم $\rightarrow$ تسارع النبض (محاولة مضاعفة ضخ الدم).</li>
+                            <li>توقف إفراز البول (لتوفير الماء) مما يرفع نسبة اليوريا السامة في الدم.</li>
+                            <li>انخفاض البوتاسيوم يسبب اضطراب السيالات العصبية وعمل القلب.</li>
+                        </ul>
+
+                        <p class="pt-2"><strong>3. أمراض ناجمة عن اخلالات محددة بالاتزان البدني:</strong></p>
+                        <div class="grid sm:grid-cols-2 gap-2 text-xs">
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>ارتفاع ضغط الدم:</strong> مخاطر نزيف وأمراض القلب.</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>ارتفاع الكولسترول:</strong> تصلب الشرايين.</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>انخفاض الهيموغلوبين/الأكسجين:</strong> فقر الدم (أنيميا).</div>
+                            <div class="p-2 bg-slate-50 rounded border border-slate-200"><strong>انخفاض الدوبامين:</strong> مرض باركنسون.</div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-end gap-2">
+                        <button onclick="goToQuizQuestion('q11')" class="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-bold px-3 py-1.5 rounded-lg text-xs transition">
+                            <i class="fa-solid fa-pen ml-1"></i> أسئلة (11, 12)
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- QUIZ VIEW (الأسئلة والتمارين) -->
+        <section id="view-quiz" class="hidden space-y-6">
+            
+            <!-- Quiz Progress Bar -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm sticky top-16 z-40 space-y-2">
+                <div class="flex justify-between items-center text-xs font-bold text-slate-700">
+                    <span>تقدم حل الأسئلة (30 سؤالاً)</span>
+                    <span id="quiz-progress-text">0 / 30 إجابة</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div id="quiz-progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Score Summary Card (Hidden until submitted) -->
+            <div id="quiz-score-summary" class="hidden bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-6 shadow-xl space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-trophy text-yellow-400"></i> ملخص النتيجة والتقييم
+                    </h3>
+                    <span id="final-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500 text-slate-950">ممتاز!</span>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                        <div class="text-2xl font-black text-emerald-400" id="final-correct">0</div>
+                        <div class="text-xs text-slate-300">صحيحة</div>
+                    </div>
+                    <div class="bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                        <div class="text-2xl font-black text-rose-400" id="final-wrong">0</div>
+                        <div class="text-xs text-slate-300">خاطئة</div>
+                    </div>
+                    <div class="bg-white/10 p-3 rounded-xl backdrop-blur-sm">
+                        <div class="text-2xl font-black text-yellow-400" id="final-score">0%</div>
+                        <div class="text-xs text-slate-300">الدرجة النهائية</div>
+                    </div>
+                </div>
+
+                <!-- Wrong Answers Remediation List -->
+                <div id="remediation-container" class="space-y-2 pt-2">
+                    <!-- Populated dynamically if wrong answers exist -->
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button onclick="retakeQuiz()" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold px-4 py-2 rounded-xl text-xs transition active:scale-95">
+                        <i class="fa-solid fa-rotate-right ml-1"></i> إعادة المحاولة وحل الأسئلة الخاطئة
+                    </button>
+                </div>
+            </div>
+
+            <!-- Questions Form Container -->
+            <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();" class="space-y-6">
+                
+                <!-- Q1 -->
+                <div id="q1" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 1 (ملاءمة وظائف الأجهزة)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        كل جهاز من أجهزة الجسم ملائم للقيام بالفعاليات الضرورية اللازمة لبقاء الجسم الكامل. لائموا بين الجهاز وبين وظيفته بواسطة مد خطوط.
+                    </p>
+                    <div class="q-interactive" data-qid="q1"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q2 -->
+                <div id="q2" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 2 (تنسيق الأجهزة - الرقص)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        يتم تنفيذ فعاليات الجسم المختلفة كالرقص مثلاً بمشاركة وتنسيق بين الأجهزة.
+                    </p>
+                    <div class="q-interactive" data-qid="q2"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q3 -->
+                <div id="q3" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 3 (التنسيق في الجسم متعدد الخلايا)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        جسم الإنسان جسم متعدد الخلايا مبني من أجهزة وأعضاء. أحد الأجهزة الذي ينفذ التنسيق والربط بين الأجزاء المختلفة هو:
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q3" value="A" class="ml-2 accent-blue-600"> أ. جهاز الهضم
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q3" value="B" class="ml-2 accent-blue-600"> ب. جهاز التنفس
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q3" value="C" class="ml-2 accent-blue-600"> ج. جهاز الهورمونات
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q3" value="D" class="ml-2 accent-blue-600"> د. جهاز الحماية
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q4 -->
+                <div id="q4" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 4 (آليات الإصلاح أثناء الرقص)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ذُكرت بعض التغيرات الناتجة في عوامل مختلفة من جسم الراقصة أثناء الرقص. صِلوا كل تغيير بفعالية آلية المحافظة على الاتزان البدني التي تعيد الوضع كما كان.
+                    </p>
+                    <div class="q-interactive" data-qid="q4"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q5 -->
+                <div id="q5" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 5 (مراحل استيعاب المعلومات)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تحصل مراكز المراقبة في الجسم على معلومات عن الانحرافات بالاتزان البدني من خلال مجسات داخلية متخصصة، وتُشغّل آليات حفظ الاتزان البدني. أكملوا المخطط بمساعدة مثال انخفاض ضغط الدم.
+                    </p>
+                    <div class="q-interactive" data-qid="q5"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q6 -->
+                <div id="q6" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 6 (آلية الحفاظ على الحرارة)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        يصف المخطط التغيرات بدرجة حرارة الجسم وعمل آليات حفظ الاتزان البدني. أكملوا المخطط بمساعدة الكلمات التالية.
+                    </p>
+                    <div class="q-interactive" data-qid="q6"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q7 -->
+                <div id="q7" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 7 (اتزان السكر في الدم)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أكملوا المخطط الذي يصف التغيرات بتركيز الجلوكوز في الدم وفعالية آليات المحافظة على الاتزان البدني التي تعيد تركيز الجلوكوز للوضع السليم.
+                    </p>
+                    <div class="q-interactive" data-qid="q7"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q8 -->
+                <div id="q8" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 8 (شرح التغذية المرتدة السالبة)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تعمل آليات المحافظة على الاتزان البدني بطريقة التغذية المرتدة السالبة: تغيير في البيئة الداخلية يثير "رد فعل عكسي" يعيد الأوضاع كما كانت. رتّبوا مراحل التغذية المرتدة السالبة لتنظيم الجلوكوز حسب تسلسلها الصحيح.
+                    </p>
+                    <div class="q-interactive" data-qid="q8"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q9 -->
+                <div id="q9" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 9 (أمثلة التغذية المرتدة)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أية جملة من الجمل التالية تصف آلية تغذية مرتدة سالبة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q9" value="A" class="ml-2 accent-blue-600"> أ. رضاعة المولود تؤدي إلى زيادة إنتاج الحليب لدى الأم
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q9" value="B" class="ml-2 accent-blue-600"> ب. المكوث في الشمس يسبب التسفع (تغير لون الجلد)
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q9" value="C" class="ml-2 accent-blue-600"> ج. إفراز البول يؤدي إلى زيادة الحاجة لإخراجه حتى تفريغ المثانة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q9" value="D" class="ml-2 accent-blue-600"> د. الشرب المتزايد يؤدي إلى إفراز بول مخفف وحجمه كبير لتخفيف فائض السوائل
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q10 -->
+                <div id="q10" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 10 (منحنى الاتزان البدني)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي المنحنيات الثلاثة التالية يصف بشكل صحيح أكثر من غيره حالة الاتزان البدني في الجسم (فيما يتعلق بعامل ما مثل درجة الحرارة أو ضغط الدم)؟
+                    </p>
+                    <div class="grid grid-cols-3 gap-2 text-xs">
+                        <label class="q-option graph-option flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <svg viewBox="-6 -4 132 72" class="w-full h-20" aria-label="منحنى أ" role="img">
+                                <line x1="0" y1="0" x2="0" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="62" x2="124" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="30" x2="124" y2="30" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+                                <polyline points="0,30 10,26 20,33 30,27 40,32 50,25 60,31 70,28 80,34 90,27 100,30 110,26 120,31" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            </svg>
+                            <span class="text-[10px] text-slate-400">الزمن ←</span>
+                            <span class="flex items-center font-bold"><input type="radio" name="q10" value="A" class="ml-2 accent-blue-600"> منحنى أ</span>
+                        </label>
+                        <label class="q-option graph-option flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <svg viewBox="-6 -4 132 72" class="w-full h-20" aria-label="منحنى ب" role="img">
+                                <line x1="0" y1="0" x2="0" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="62" x2="124" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="30" x2="124" y2="30" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+                                <polyline points="0,30 120,30" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            </svg>
+                            <span class="text-[10px] text-slate-400">الزمن ←</span>
+                            <span class="flex items-center font-bold"><input type="radio" name="q10" value="B" class="ml-2 accent-blue-600"> منحنى ب</span>
+                        </label>
+                        <label class="q-option graph-option flex flex-col items-center gap-2 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <svg viewBox="-6 -4 132 72" class="w-full h-20" aria-label="منحنى ج" role="img">
+                                <line x1="0" y1="0" x2="0" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="62" x2="124" y2="62" stroke="#94a3b8" stroke-width="1.5"/>
+                                <line x1="0" y1="30" x2="124" y2="30" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+                                <polyline points="0,30 10,8 20,50 30,15 40,46 50,4 60,40 70,20 80,54 90,10 100,44 110,18 120,36" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                            </svg>
+                            <span class="text-[10px] text-slate-400">الزمن ←</span>
+                            <span class="flex items-center font-bold"><input type="radio" name="q10" value="C" class="ml-2 accent-blue-600"> منحنى ج</span>
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q11 -->
+                <div id="q11" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-5">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 11 (مرض الكوليرا وآليات الاتزان)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-5')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تسبب جرثومة الكوليرا إسهالات قد تصل كميتها إلى 20 لتراً في اليوم، والمرض قاتل لنحو 50% من المرضى الذين لا يُعالجون. صنّفوا كل عرَض من الأعراض الأساسية للمرض: هل يمثل إخلالاً بالاتزان البدني، أم فعالية آلية لحفظ الاتزان البدني (والتي للأسف لا تنجح دائماً في إعادته)؟
+                    </p>
+                    <div class="q-interactive" data-qid="q11"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q12 -->
+                <div id="q12" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-5">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 12 (الربط بين الاخلال والمرض)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-5')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تحدث الأمراض بسبب إخلال بحالة الاتزان البدني في الجسم. اربطوا بواسطة مد خطوط بين الإخلال بالاتزان البدني وبين المرض المتعلق به.
+                    </p>
+                    <div class="q-interactive" data-qid="q12"></div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q13 -->
+                <div id="q13" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 13 (تعريف الاتزان البدني)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما هو التعريف الأدق لـ "الاتزان البدني"؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q13" value="A" class="ml-2 accent-blue-600"> أ. قدرة الكائن الحي على إنتاج طاقة من مواد عضوية
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q13" value="B" class="ml-2 accent-blue-600"> ب. محافظة الكائن الحي على بيئة داخلية مستقرة إلى حد ما في حدود ثابتة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q13" value="C" class="ml-2 accent-blue-600"> ج. محافظة الكائن الحي على بيئة داخلية ثابتة بشكل مطلق بدون أي تغيير
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q14 -->
+                <div id="q14" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 14 (الأيض وحفظ الاتزان)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي من العمليات التالية تساعد في الحفاظ على الاتزان البدني لدرجة الحرارة في البرد؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q14" value="A" class="ml-2 accent-blue-600"> أ. تقلبات يومية وموسمية بدرجة الحرارة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q14" value="B" class="ml-2 accent-blue-600"> ب. مضاعفة وتيرة فعاليات الأيض (الإنقباض والتنفس الخلوي) في البرد لإطلاق الحرارة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q14" value="C" class="ml-2 accent-blue-600"> ج. استطالة شعر الرأس والأظافر
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q15 -->
+                <div id="q15" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 15 (شحوب الجلد في البرد)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        عندما يتواجد شخص في مكان بارد، يكون لون جلده شاحباً. كيف يُفسر ذلك؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q15" value="A" class="ml-2 accent-blue-600"> أ. يتقلص وتكتفي وتنقبض الأوعية الدموية المحيطية في الجلد ليجري فيها دم أقل لتقليل فقدان الحرارة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q15" value="B" class="ml-2 accent-blue-600"> ب. ارتجاف الجسم يقتل خلايا الدم الحمراء
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q15" value="C" class="ml-2 accent-blue-600"> ج. تزداد الأوعية الدموية في البيئة الدافئة فقط
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q16 -->
+                <div id="q16" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 16 (عملية تحفظ الاتزان البدني)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي من التالية يعبر عن عملية تساعد مباشرة في حفظ الاتزان البدني للحرارة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q16" value="A" class="ml-2 accent-blue-600"> أ. ارتفاع مستوى السكر في الدم بعد الأكل
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q16" value="B" class="ml-2 accent-blue-600"> ب. تغير جريان الدم وتوسع/تضيق الأوعية بالجلد كرد فعل على تغير درجة حرارة البيئة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q16" value="C" class="ml-2 accent-blue-600"> ج. الإسهال الحاد عند مرض الكوليرا
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q17 -->
+                <div id="q17" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 17 (خطورة الحرارة المرتفعة 42°م)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        لماذا من المهم جداً تخفيض حرارة الجسم إذا اقتربت من 42 درجة مئوية فوراً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q17" value="A" class="ml-2 accent-blue-600"> أ. الحرارة المرتفعة تضر بالإنزيمات وتغير مبناها الفراغي فتتشوش التفاعلات الحيوية بالخلية
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q17" value="B" class="ml-2 accent-blue-600"> ب. الحرارة تعكس اتجاه جاذبية الدم
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q17" value="C" class="ml-2 accent-blue-600"> ج. الحرارة تضاعف كمية العظام
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q18 -->
+                <div id="q18" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 18 (البيئة الداخلية والخارجية)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح قوله عن كائن حي يحدث في جسمه اتزان بدني؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q18" value="A" class="ml-2 accent-blue-600"> أ. البيئة الداخلية في جسم الكائن الحي تختلف وغير مماثلة للبيئة الخارجية وتستقر رغم تغيرها
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q18" value="B" class="ml-2 accent-blue-600"> ب. كمية الطعام الداخلة تماثل تماماً كمية المواد الخارجة بنفس الثانية
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q18" value="C" class="ml-2 accent-blue-600"> ج. جميع خلاياه تنفسها بنفس السرعة بدون اختلاف
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q19 -->
+                <div id="q19" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 19 (مستويات التنظيم)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الترتيب الصحيح لمستويات التنظيم في جسم الإنسان من الأصغر إلى الأكبر؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q19" value="A" class="ml-2 accent-blue-600"> أ. ذرات ← مركبات عضوية وغير عضوية ← عضيات ← خلايا ← أنسجة ← أعضاء ← أجهزة ← الجسم الكامل
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q19" value="B" class="ml-2 accent-blue-600"> ب. خلايا ← أنسجة ← أعضاء ← ذرات ← عضيات ← مركبات ← أجهزة ← الجسم الكامل
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q19" value="C" class="ml-2 accent-blue-600"> ج. الجسم الكامل ← أجهزة ← أعضاء ← أنسجة ← خلايا ← عضيات ← مركبات ← ذرات
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q20 -->
+                <div id="q20" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 20 (نجاح الجراحات)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        حسب المادة، لماذا أصبحت الجراحات ناجحة فقط في نهاية القرن 19؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q20" value="A" class="ml-2 accent-blue-600"> أ. لأن الباحثين اكتفوا بفتح الجسم لاستطلاع ما بداخله دون أي تعقيم
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q20" value="B" class="ml-2 accent-blue-600"> ب. بفضل استعمال المواد المطهّرة ومكافحة التلوث بالبكتيريا
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q20" value="C" class="ml-2 accent-blue-600"> ج. بسبب اكتشاف قوانين الوراثة على نبات البازلاء
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q21 -->
+                <div id="q21" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 21 (وليام بومانت)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ماذا درس وليام بومانت (1785-1853) حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q21" value="A" class="ml-2 accent-blue-600"> أ. أسباب مرض السكري باستئصال البنكرياس من الكلاب
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q21" value="B" class="ml-2 accent-blue-600"> ب. فعالية المعدة والهضم لدى جندي أمريكي مصاب بجرح مفتوح
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q21" value="C" class="ml-2 accent-blue-600"> ج. قوانين الوراثة على نبات البازلاء
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q22 -->
+                <div id="q22" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 22 (مرينج ومينكوفسكي)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        كيف اكتشف العالمان مرينج ومينكوفسكي عام 1889 أسباب مرض السكري؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q22" value="A" class="ml-2 accent-blue-600"> أ. بتشريح الجثث البشرية فقط
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q22" value="B" class="ml-2 accent-blue-600"> ب. باستئصال البنكرياس من الكلاب (تجارب على حيوانات ثديية كالكلاب والقرود والماعز والفئران)
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q22" value="C" class="ml-2 accent-blue-600"> ج. بدراسة معدة جندي مصاب بجرح مفتوح
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q23 -->
+                <div id="q23" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 23 (نشأة الجسم)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        كيف ينشأ جسم الإنسان حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q23" value="A" class="ml-2 accent-blue-600"> أ. من خلية واحدة هي البويضة المخصبة (اللاقحة / الزيجوت) الناتجة عن تخصيب البويضة برأس الحيوان المنوي، ثم تنقسم إلى 2 ثم 4 ثم 8 ثم تتمايز إلى أنسجة وأعضاء وأجهزة حتى مئات المليارات من الخلايا
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q23" value="B" class="ml-2 accent-blue-600"> ب. من اندماج أجهزة كاملة جاهزة مباشرة دون انقسام
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q23" value="C" class="ml-2 accent-blue-600"> ج. من خلايا الدم البيضاء فقط
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q24 -->
+                <div id="q24" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 24 (مندل والوراثة)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن غريغور مندل حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q24" value="A" class="ml-2 accent-blue-600"> أ. أجرى تجاربه على الكلاب واكتشف الإنسولين
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q24" value="B" class="ml-2 accent-blue-600"> ب. اكتشف البكتيريا والمواد المطهرة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q24" value="C" class="ml-2 accent-blue-600"> ج. أبو علم الوراثة (1822-1884)، أجرى تجاربه على نبات البازلاء واكتشف القوانين الأساسية للوراثة، نُشرت نتائجه عام 1860 ولم يُنتبه لها بسبب الاهتمام بنظرية داروين حتى عُثر عليها عام 1900
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q25 -->
+                <div id="q25" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 25 (تركيب الدم)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما البنية الأساسية لجهاز الدم حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q25" value="A" class="ml-2 accent-blue-600"> أ. 45% بلازما و55% خلايا
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q25" value="B" class="ml-2 accent-blue-600"> ب. القلب يعمل كمضخة، وشرايين وأوردة وشعيرات، وسائل الدم 55% بلازما و45% خلايا (حمراء وبيضاء وصفائح)
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q25" value="C" class="ml-2 accent-blue-600"> ج. الدم يتكون من خلايا دم بيضاء فقط
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q26 -->
+                <div id="q26" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 26 (اليوريا)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن اليوريا حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q26" value="A" class="ml-2 accent-blue-600"> أ. تتكون في الكبد من الأحماض الأمينية والأمونيا (تفاعل الأمونيا مع ثاني أكسيد الكربون)، ينقلها الدم إلى الكليتين لتُخرج مع البول، وارتفاعها في الدم مؤشر على مشكلة، وصيغتها CO(NH2)2
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q26" value="B" class="ml-2 accent-blue-600"> ب. تتكون في الرئتين وتخرج مع هواء الزفير
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q26" value="C" class="ml-2 accent-blue-600"> ج. تتكون في العضلات وتبقى فيها ولا تخرج أبداً
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q27 -->
+                <div id="q27" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 27 (جهاز الليمفا)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن جهاز الليمفا حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q27" value="A" class="ml-2 accent-blue-600"> أ. سائله يحوي خلايا دم حمراء وصفائح بكثرة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q27" value="B" class="ml-2 accent-blue-600"> ب. سائله يشبه الدم لكن تركيز البروتينات فيه أقل، ويحوي خلايا دم بيضاء فقط (لا حمراء ولا صفائح)، ومن وظائفه: استرجاع السوائل المرشحة وإعادتها للدم، واستيعاب الأحماض الدهنية والجليسرول في الأمعاء الدقيقة، والمناعة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q27" value="C" class="ml-2 accent-blue-600"> ج. وظيفته الوحيدة ضخ الدم مثل القلب
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q28 -->
+                <div id="q28" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 28 (جهاز الهضم)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن جهاز الهضم حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q28" value="A" class="ml-2 accent-blue-600"> أ. أنبوب طويل من الفم حتى الشرج (فم، مريء، معدة، أمعاء) تتصل به غدد تفرز عصارات هاضمة، ووظيفته: استيعاب الغذاء وتمزيقه وتحليل المركبات المعقدة إلى بسيطة وامتصاصها ونقلها إلى جهاز النقل
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q28" value="B" class="ml-2 accent-blue-600"> ب. وظيفته استيعاب الأكسجين وإخراج ثاني أكسيد الكربون
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q28" value="C" class="ml-2 accent-blue-600"> ج. وظيفته التخلص من اليوريا وموازنة الماء والأملاح
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q29 -->
+                <div id="q29" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 29 (جهاز التنفس)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن جهاز التنفس حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q29" value="A" class="ml-2 accent-blue-600"> أ. يتكون من كليتين وحالبين ومثانة
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q29" value="B" class="ml-2 accent-blue-600"> ب. وظيفته نقل الهورمونات ومقاومة مسببات الأمراض
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q29" value="C" class="ml-2 accent-blue-600"> ج. يتألف من الأنف وتجويف الأنف والبلعوم والحنجرة والقصبة الهوائية والرئتين، ووظيفته استيعاب الأكسجين من الهواء وإخراج ثاني أكسيد الكربون
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q30 -->
+                <div id="q30" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 30 (جهاز الإخراج)</span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن جهاز الإخراج حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q30" value="A" class="ml-2 accent-blue-600"> أ. يتألف من الأنف والقصبة الهوائية والرئتين
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q30" value="B" class="ml-2 accent-blue-600"> ب. يتكون من كليتين على طرفي العمود الفقري بارتفاع الخصر وحالبين يصبان في المثانة التي يتجمع فيها البول ثم يخرج عبر الأحليل، ووظيفته: التخلص من اليوريا وفائض H+ والأدوية، والمحافظة على موازنة الماء والأملاح
+                        </label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+                            <input type="radio" name="q30" value="C" class="ml-2 accent-blue-600"> ج. وظيفته تحليل الغذاء المعقد إلى مركبات بسيطة
+                        </label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Answer Actions -->
+                <div class="pt-4 flex flex-col sm:flex-row gap-3">
+                    <button type="submit" class="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>تسليم وتقييم الإجابات</span>
+                    </button>
+                    <button type="button" onclick="fillAllCorrect()" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3.5 rounded-xl text-base shadow-lg transition active:scale-95 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        <span>تعبئة كل الإجابات الصحيحة</span>
+                    </button>
+                    <button type="button" onclick="resetProgress()" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 font-bold px-6 py-3.5 rounded-xl text-base transition active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+                        <span>إعادة ضبط الإجابات</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4">
+            تطبيق بيولوجيا الإنسان - تحضير للامتحان من الذرات إلى الجسم الكامل &copy; 2026
+        </div>
+    </footer>
+
+    <script>
+        // Answer Key Mapping (multiple-choice questions)
+        const ANSWER_KEY = {
+            q3: "C",
+            q9: "D",
+            q10: "A",
+            q13: "B",
+            q14: "B",
+            q15: "A",
+            q16: "B",
+            q17: "A",
+            q18: "A",
+            q19: "A",
+            q20: "B",
+            q21: "B",
+            q22: "B",
+            q23: "A",
+            q24: "C",
+            q25: "B",
+            q26: "A",
+            q27: "B",
+            q28: "A",
+            q29: "C",
+            q30: "B"
+        };
+
+        // Interactive questions (matching lines, diagram fill-in, ordering, classifying, multi-select)
+        const INTERACTIVE = {
+            q1: { parts: [{
+                type: 'match',
+                leftTitle: 'أجهزة',
+                rightTitle: 'وظائف',
+                left: [
+                    { id: 'dig', t: 'جهاز الهضم' },
+                    { id: 'resp', t: 'جهاز التنفس (الرئتين)' },
+                    { id: 'excr', t: 'جهاز الإفراز (الكليتين)' },
+                    { id: 'trans', t: 'جهاز النقل (الدم)' },
+                    { id: 'nerv', t: 'جهاز الأعصاب' },
+                    { id: 'horm', t: 'جهاز الإفراز الداخلي (الهورمونات)' },
+                    { id: 'prot', t: 'جهاز الحماية (خلايا الدم البيضاء)' }
+                ],
+                right: [
+                    { id: 'coord', t: 'أجهزة تنسق بين فعاليات الأجهزة المختلفة' },
+                    { id: 'exch', t: 'أجهزة لها علاقة مباشرة باستيعاب مواد من البيئة أو إطلاق مواد إليها' },
+                    { id: 'move', t: 'جهاز مرتبط بنقل مواد من مكان إلى آخر داخل الجسم والربط بين أجزائه المختلفة' },
+                    { id: 'defend', t: 'جهاز فعاليته تحمي الجسم من الإصابة بعوامل غريبة مثل الجراثيم والفيروسات' }
+                ],
+                answer: { dig: 'exch', resp: 'exch', excr: 'exch', trans: 'move', nerv: 'coord', horm: 'coord', prot: 'defend' }
+            }]},
+            q2: { parts: [{
+                type: 'match',
+                oneToOne: true,
+                title: 'أ. صِلوا كل جهاز بوظيفته في فعالية الرقص.',
+                leftTitle: 'الجهاز',
+                rightTitle: 'وظيفته',
+                left: [
+                    { id: 'ears', t: 'الحواس (الأذنين)' },
+                    { id: 'nerv', t: 'الأعصاب' },
+                    { id: 'skel', t: 'الهيكل العظمي والعضلات' },
+                    { id: 'blood', t: 'النقل (الدم)' },
+                    { id: 'resp', t: 'التنفس' }
+                ],
+                right: [
+                    { id: 'move', t: 'حركة العضلات تحرّك الهيكل العظمي وتنفّذ حركات الرقص' },
+                    { id: 'o2', t: 'نقل الأكسجين والغذاء إلى خلايا العضلات وإزالة ثاني أكسيد الكربون منها' },
+                    { id: 'sound', t: 'استيعاب المحفز الصوتي (الموسيقى)' },
+                    { id: 'air', t: 'إدخال الأكسجين إلى الجسم وإخراج ثاني أكسيد الكربون' },
+                    { id: 'brain', t: 'نقل المحفز الصوتي للدماغ الذي يعالج المعلومات ويرسل "تعليمات" للعضلات كي تنقبض' }
+                ],
+                answer: { ears: 'sound', nerv: 'brain', skel: 'move', blood: 'o2', resp: 'air' }
+            }, {
+                type: 'multi',
+                title: 'ب. أشيروا إلى الأجهزة التي تربط وتنسق بين أجهزة الجسم المختلفة (يمكن اختيار أكثر من جهاز).',
+                options: [
+                    { id: 'ears', t: 'الحواس (الأذنين)' },
+                    { id: 'nerv', t: 'الأعصاب' },
+                    { id: 'skel', t: 'الهيكل العظمي والعضلات' },
+                    { id: 'blood', t: 'النقل (الدم)' },
+                    { id: 'resp', t: 'التنفس' }
+                ],
+                answer: ['nerv', 'blood']
+            }]},
+            q4: { parts: [{
+                type: 'match',
+                oneToOne: true,
+                leftTitle: 'التغيير',
+                rightTitle: 'آلية إعادة الاتزان',
+                left: [
+                    { id: 'heat', t: 'ارتفاع درجة الحرارة في أعقاب حرارة متكونة في خلايا العضلات' },
+                    { id: 'water', t: 'انخفاض حجم وضغط الدم في أعقاب خسارة ماء مع العرق' },
+                    { id: 'o2', t: 'انخفاض تركيز الأكسجين في الدم في أعقاب استهلاك متزايد له في التنفس الخلوي في العضلات' }
+                ],
+                right: [
+                    { id: 'breath', t: 'تزداد وتيرة التنفس وعمقه فيصل أكسجين أكثر للدم، وتزداد وتيرة انقباضات القلب وعمقها فيجري دم أكثر للجسم' },
+                    { id: 'sweat', t: 'إفراز عرق (تبخره يبرّد الجسم) وتوسيع الأوعية الدموية المحيطية فتنتقل حرارة أكثر إلى البيئة' },
+                    { id: 'kidney', t: 'تنتج الكلى بولاً مركّزاً حجمه قليل، ويثير الدماغ الشعور بالعطش فيشرب الإنسان' }
+                ],
+                answer: { heat: 'sweat', water: 'kidney', o2: 'breath' }
+            }]},
+            q5: { parts: [{
+                type: 'fill',
+                bank: [
+                    { id: 'kid', t: 'الكليتين' },
+                    { id: 'hiP', t: 'ارتفاع ضغط الدم' },
+                    { id: 'bp', t: 'ضغط الدم' },
+                    { id: 'liver', t: 'الكبد' },
+                    { id: 'urine', t: 'إنتاج بول مركّز، ويثير الدماغ الشعور بالعطش فيشرب الإنسان' },
+                    { id: 'brain', t: 'الدماغ' },
+                    { id: 'dilute', t: 'إنتاج بول مخفف حجمه كبير' },
+                    { id: 'loP', t: 'انخفاض ضغط الدم' }
+                ],
+                columns: [{
+                    boxes: [
+                        { label: '1. المجسات', html: 'مجسات متخصصة لـ {s1} تشعر بالتغيير: {s2}' },
+                        { label: '2. نقل المعلومات', html: 'وتنقل المعلومات لمركز المراقبة في {s3}' },
+                        { label: '3. التعليمات', html: 'يُرسل مركز المراقبة لأعضاء رد الفعل ({s4}) "تعليمات": {s5}' }
+                    ],
+                    loopBack: 'يعود ضغط الدم إلى وضعه السليم'
+                }],
+                answer: { s1: 'bp', s2: 'loP', s3: 'brain', s4: 'kid', s5: 'urine' }
+            }]},
+            q6: { parts: [{
+                type: 'fill',
+                center: 'الحالة السليمة: درجة حرارة جسم 37°م',
+                bank: [
+                    { id: 'hot', t: 'ارتفاع درجة حرارة الجسم' },
+                    { id: 'shiver', t: 'ارتجاف وتضييق أوعية دموية محيطية' },
+                    { id: 'cold', t: 'المكوث في بيئة باردة' },
+                    { id: 'sweat', t: 'إفراز عرق وتوسيع أوعية دموية محيطية' },
+                    { id: 'low', t: 'انخفاض درجة حرارة الجسم' },
+                    { id: 'active', t: 'نشاط جسماني أو عبء حراري خارجي' }
+                ],
+                columns: [{
+                    title: 'ارتفاع الحرارة',
+                    tone: 'rose',
+                    boxes: [
+                        { label: 'عامل مؤثر', html: '{f1}' },
+                        { label: 'الحالة الجديدة', html: '{n1}' },
+                        { label: 'وصف فعالية آلية الإصلاح', html: '{m1}' }
+                    ],
+                    loopBack: 'عودة إلى الحالة السليمة'
+                }, {
+                    title: 'انخفاض الحرارة',
+                    tone: 'sky',
+                    boxes: [
+                        { label: 'عامل مؤثر', html: '{f2}' },
+                        { label: 'الحالة الجديدة', html: '{n2}' },
+                        { label: 'وصف فعالية آلية الإصلاح', html: '{m2}' }
+                    ],
+                    loopBack: 'عودة إلى الحالة السليمة'
+                }],
+                answer: { f1: 'active', n1: 'hot', m1: 'sweat', f2: 'cold', n2: 'low', m2: 'shiver' }
+            }]},
+            q7: { parts: [{
+                type: 'fill',
+                center: 'الحالة السليمة لـ: تركيز الجلوكوز في الدم',
+                bank: [
+                    { id: 'glucagon', t: 'جلوكاجون' },
+                    { id: 'fast', t: 'صوم، أو غياب الجلوكوز من الغذاء' },
+                    { id: 'urea', t: 'يوريا' },
+                    { id: 'carbs', t: 'تناول غذاء غني بالكربوهيدرات' },
+                    { id: 'insulin', t: 'انسولين' },
+                    { id: 'water', t: 'شرب كمية كبيرة من الماء' }
+                ],
+                columns: [{
+                    title: 'ارتفاع الجلوكوز',
+                    tone: 'rose',
+                    boxes: [
+                        { label: 'تغيير، عامل مؤثر', html: '{f1}' },
+                        { label: 'الحالة الجديدة', html: 'ارتفاع تركيز الجلوكوز في الدم' },
+                        { label: 'وصف فعالية آلية الإصلاح', html: 'ارتفاع بوتيرة إفراز الهورمون {h1} من البنكرياس، والذي يسبب ارتفاع وتيرة دخول الجلوكوز للخلايا' }
+                    ],
+                    loopBack: 'عودة إلى الحالة السليمة'
+                }, {
+                    title: 'انخفاض الجلوكوز',
+                    tone: 'sky',
+                    boxes: [
+                        { label: 'تغيير، عامل مؤثر', html: '{f2}' },
+                        { label: 'الحالة الجديدة', html: 'انخفاض تركيز الجلوكوز في الدم' },
+                        { label: 'وصف فعالية آلية الإصلاح', html: 'ارتفاع بإفراز الهورمون {h2} من البنكرياس، الذي يؤدي إلى تحليل الجلايكوجين إلى جلوكوز في الكبد وخروجه للدم' }
+                    ],
+                    loopBack: 'عودة إلى الحالة السليمة'
+                }],
+                answer: { f1: 'carbs', h1: 'insulin', f2: 'fast', h2: 'glucagon' }
+            }]},
+            q8: { parts: [{
+                type: 'order',
+                items: [
+                    { id: 'food', t: 'تناول غذاء غني بالكربوهيدرات (عامل مؤثر)' },
+                    { id: 'high', t: 'ارتفاع تركيز الجلوكوز في الدم (انحراف عن الاتزان)' },
+                    { id: 'insulin', t: 'ارتفاع وتيرة إفراز الانسولين من البنكرياس' },
+                    { id: 'enter', t: 'ارتفاع وتيرة دخول الجلوكوز إلى الخلايا' },
+                    { id: 'back', t: 'انخفاض تركيز الجلوكوز في الدم وعودة حالة الاتزان البدني' }
+                ],
+                initial: ['insulin', 'back', 'food', 'enter', 'high'],
+                answer: ['food', 'high', 'insulin', 'enter', 'back']
+            }]},
+            q11: { parts: [{
+                type: 'classify',
+                buckets: [
+                    { id: 'dis', t: 'إخلال بالاتزان', tone: 'rose' },
+                    { id: 'mech', t: 'آلية حفظ الاتزان', tone: 'emerald' }
+                ],
+                items: [
+                    { id: 'bp', t: 'انخفاض ضغط الدم' },
+                    { id: 'pulse', t: 'نبض سريع' },
+                    { id: 'urea', t: 'توقف إفراز البول وارتفاع كمية اليوريا في الدم' },
+                    { id: 'thirst', t: 'شعور المصاب بعطش شديد ومن الصعب أن يرتوي' },
+                    { id: 'k', t: 'انخفاض مستوى البوتاسيوم (مشاكل في توصيل المحفزات وفي أداء القلب والعضلات)' }
+                ],
+                answer: { bp: 'dis', pulse: 'mech', urea: 'dis', thirst: 'mech', k: 'dis' }
+            }]},
+            q12: { parts: [{
+                type: 'match',
+                oneToOne: true,
+                leftTitle: 'خروقات الاتزان البدني',
+                rightTitle: 'أمراض',
+                left: [
+                    { id: 'bp', t: 'ارتفاع ضغط الدم' },
+                    { id: 'chol', t: 'ارتفاع مستوى الكولسترول والدهنيات في الدم' },
+                    { id: 'hb', t: 'انخفاض مستوى الأكسجين في الدم في أعقاب انخفاض كمية الهيموغلوبين' },
+                    { id: 'dop', t: 'انخفاض كمية الدوبامين (مادة هامة من أجل أداء الدماغ)' },
+                    { id: 'water', t: 'انخفاض كمية الماء في الجسم وضغط الدم في أعقاب إسهال صعب' }
+                ],
+                right: [
+                    { id: 'hyper', t: 'ضغط دم مرتفع، خطر تكوّن نزيف دموي وأمراض قلب' },
+                    { id: 'cholera', t: 'كوليرا' },
+                    { id: 'anemia', t: 'فقر دم (أنيميا)' },
+                    { id: 'park', t: 'باركنسون' },
+                    { id: 'athero', t: 'تصلب شرايين' }
+                ],
+                answer: { bp: 'hyper', chol: 'athero', hb: 'anemia', dop: 'park', water: 'cholera' }
+            }]}
+        };
+
+        const QUESTION_IDS = Array.from({ length: 30 }, (_, i) => `q${i + 1}`);
+        const AR_LETTERS = { A: 'أ', B: 'ب', C: 'ج', D: 'د' };
+        const LINE_COLORS = ['#2563eb', '#7c3aed', '#db2777', '#ea580c', '#0d9488', '#4f46e5', '#ca8a04'];
+        const STORAGE_KEY = 'human_bio_prep_data_v2';
+
+        const EXPLANATIONS = {
+            q1: "الهضم والتنفس والإفراز (الكليتين) تستوعب مواد من البيئة أو تطلقها إليها، الدم ينقل المواد ويربط أجزاء الجسم، الأعصاب والهورمونات تنسق بين الأجهزة، وخلايا الدم البيضاء تحمي الجسم.",
+            q2: "الأذنان تستوعبان الموسيقى، الأعصاب تنقل المحفز للدماغ وتنقل \"تعليمات\" للعضلات، والعضلات تحرك الهيكل العظمي، والدم ينقل الأكسجين والغذاء. الأعصاب والنقل (الدم) هما جهازا الاتصال والتنسيق.",
+            q3: "جهاز الهورمونات هو أحد الأجهزة الرئيسية للتنسيق بجانب الأعصاب.",
+            q4: "الحرارة المرتفعة ← عرق وتوسيع أوعية، خسارة الماء ← بول مركز وعطش، نقص الأكسجين ← تسارع التنفس وانقباضات القلب.",
+            q5: "مجسات ضغط الدم تشعر بانخفاضه، تنقل المعلومات للدماغ، فيرسل \"تعليمات\" للكليتين لإنتاج بول مركز ويثير الشعور بالعطش.",
+            q6: "النشاط الجسماني يرفع الحرارة فيُفرز العرق وتتوسع الأوعية، والبرد يخفضها فيحدث ارتجاف وتضييق للأوعية المحيطية.",
+            q7: "الغذاء الغني بالكربوهيدرات يرفع الجلوكوز فيُفرز الانسولين، والصوم يخفضه فيُفرز الجلوكاجون الذي يحلل الجلايكوجين في الكبد.",
+            q8: "يثير ارتفاع الجلوكوز إفراز الانسولين، الذي ينشط دخول الجلوكوز للخلايا فينخفض تركيزه في الدم ويعود الاتزان - رد فعل عكسي للانحراف.",
+            q9: "شرب سوائل كثيرة يتبعه بول مخفف وكبير الحجم للتخلص من فائض السوائل المتراكمة.",
+            q10: "المنحنى أ: ظروف الجسم لا تثبت بشكل مطلق، بل تتأرجح بتغيرات طفيفة حول القيمة السليمة لأن آليات الاتزان تعيدها باستمرار.",
+            q11: "انخفاض ضغط الدم وارتفاع اليوريا وانخفاض البوتاسيوم هي إخلال بالاتزان. النبض السريع (ضخ دم أكثر) والعطش (زيادة السوائل) هما محاولات الجسم لرفع ضغط الدم.",
+            q12: "ضغط الدم المرتفع ← خطر نزيف وأمراض قلب، الكولسترول ← تصلب شرايين، نقص الهيموغلوبين ← فقر دم، نقص الدوبامين ← باركنسون، فقدان الماء بالإسهال ← كوليرا.",
+            q13: "الاتزان البدني هو المحافظة على بيئة داخلية مستقرة نسبياً وفي حدود معينة.",
+            q14: "مضاعفة الأيض بالبرد يرافقها إطلاق حرارة تدفئ الجسم.",
+            q15: "تنقبض الأوعية الدموية تحت الجلد لمنع تسرب الحرارة للبيئة الباردة فيظهر شاحباً.",
+            q16: "تغير توسع وتضيق أوعية الجلد يستجيب مباشرة لتعديل الحرارة.",
+            q17: "الحرارة الفائقة تغير تركيب البروتينات والإنزيمات فتتوقف التفاعلات الحيوية.",
+            q18: "معنى الاتزان البدني هو توفير بيئة داخلية تختلف عن البيئة الخارجية رغم تقلبت الأخيرة.",
+            q19: "مستويات التنظيم من الأصغر: ذرات ← مركبات عضوية وغير عضوية ← عضيات ← خلايا ← أنسجة ← أعضاء ← أجهزة ← الجسم الكامل.",
+            q20: "في نهاية القرن 19 نجحت الجراحات بفضل المواد المطهّرة ومكافحة البكتيريا، بعد أن كان بعضها ينتهي بالوفاة بسبب التلوث.",
+            q21: "وليام بومانت (1785-1853) درس فعالية المعدة والهضم لدى جندي أمريكي مصاب بجرح مفتوح.",
+            q22: "مرينج ومينكوفسكي (1889) اكتشفا أسباب السكري باستئصال البنكرياس من الكلاب، ضمن تجارب على ثدييات كالقرود والكلاب والماعز والفئران.",
+            q23: "ينشأ الجسم من البويضة المخصبة (اللاقحة/الزيجوت) من تخصيب البويضة برأس الحيوان المنوي، ثم 2 ثم 4 ثم 8 ثم تتمايز إلى أنسجة وأعضاء وأجهزة حتى مئات المليارات من الخلايا.",
+            q24: "مندل (1822-1884) أبو الوراثة، تجارب البازلاء، القوانين الأساسية، نُشرت 1860 وأُهملت بسبب داروين حتى 1900.",
+            q25: "الدم: القلب مضخة، شرايين وأوردة وشعيرات، 55% بلازما و45% خلايا (حمراء وبيضاء وصفائح).",
+            q26: "اليوريا CO(NH2)2 تتكون في الكبد من الأحماض الأمينية والأمونيا، ينقلها الدم للكليتين لتخرج مع البول، وارتفاعها مؤشر مشكلة.",
+            q27: "سائل الليمفا يشبه الدم ببروتين أقل، وبه بيضاء فقط، ووظائفه: استرجاع السوائل للدم، وامتصاص الأحماض الدهنية والجليسرول في الأمعاء الدقيقة، والمناعة.",
+            q28: "الهضم: أنبوب من الفم حتى الشرج (فم، مريء، معدة، أمعاء) مع غدد وعصارات، وظيفته الاستيعاب والطحن والتحليل من معقد إلى بسيط والامتصاص والنقل لجهاز النقل.",
+            q29: "التنفس: أنف وتجويف أنف وبلعوم وحنجرة وقصبة ورئتان، وظيفته استيعاب O2 وإخراج CO2.",
+            q30: "الإخراج: كليتان على طرفي العمود الفقري وحالبان ومثانة وأحليل، وظيفته التخلص من اليوريا وفائض H+ والأدوية وموازنة الماء والأملاح."
+        };
+
+        // Current User State
+        let userAnswers = {};
+        let quizSubmitted = false;
+        const checkedCards = new Set();   // questions checked individually with "تحقق"
+        const pendingSelection = {};      // `${qId}:${part}` -> current tap selection
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            Object.keys(INTERACTIVE).forEach(qId => {
+                const badge = document.querySelector(`#${qId} > div > span`);
+                if (badge) badge.insertAdjacentHTML('beforeend', ' <span class="mr-1 text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded-md"><i class="fa-solid fa-hand-pointer"></i> تفاعلي</span>');
+                renderInteractive(qId);
+            });
+            if (quizSubmitted) {
+                calculateResults();
+                document.getElementById('quiz-score-summary').classList.remove('hidden');
+            }
+            updateProgressStats();
+            setupRadioListeners();
+            document.addEventListener('click', handleInteractiveClick);
+            window.addEventListener('resize', redrawAllLines);
+            if (document.fonts) document.fonts.ready.then(redrawAllLines);
+        });
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            document.getElementById('view-dashboard').classList.add('hidden');
+            document.getElementById('view-study').classList.add('hidden');
+            document.getElementById('view-quiz').classList.add('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-white', 'text-blue-700');
+                btn.classList.add('bg-white/10', 'text-white');
+            });
+
+            document.getElementById(`view-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white/10', 'text-white');
+                activeBtn.classList.add('bg-white', 'text-blue-700');
+            }
+            if (tabId === 'quiz') requestAnimationFrame(redrawAllLines);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Start Day Direct Route
+        function startDay(dayNum) {
+            switchTab('study');
+            filterMaterial(`day${dayNum}`);
+        }
+
+        // Filter Study Material
+        function filterMaterial(day) {
+            document.querySelectorAll('.mat-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            const activeBtn = document.getElementById(`filter-${day}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-600');
+                activeBtn.classList.add('bg-blue-600', 'text-white');
+            }
+
+            document.querySelectorAll('.mat-card').forEach(card => {
+                if (day === 'all' || card.dataset.day === day) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Radio Button Input Handler
+        function setupRadioListeners() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    userAnswers[e.target.name] = e.target.value;
+                    saveProgress();
+                    updateProgressStats();
+                });
+            });
+        }
+
+        // ---------- Interactive questions ----------
+
+        function selKey(qId, p) { return `${qId}:${p}`; }
+
+        function getPartState(qId, p) {
+            const a = userAnswers[qId];
+            return Array.isArray(a) ? a[p] : undefined;
+        }
+
+        function setPartState(qId, p, val) {
+            if (!Array.isArray(userAnswers[qId])) userAnswers[qId] = [];
+            userAnswers[qId][p] = val;
+            checkedCards.delete(qId);
+            if (!quizSubmitted) hideFeedback(qId);
+            renderInteractive(qId);
+            saveProgress();
+            updateProgressStats();
+        }
+
+        function isMarked(qId) {
+            return quizSubmitted || checkedCards.has(qId);
+        }
+
+        function isPartAnswered(cfg, state) {
+            if (state === undefined || state === null) return false;
+            switch (cfg.type) {
+                case 'match': return cfg.left.every(it => state[it.id]);
+                case 'classify': return cfg.items.every(it => state[it.id]);
+                case 'fill': return Object.keys(cfg.answer).every(s => state[s]);
+                case 'order': return Array.isArray(state);
+                case 'multi': return state.length > 0;
+            }
+            return false;
+        }
+
+        // Returns [correctCount, totalCount] for one part
+        function scorePart(cfg, state) {
+            state = state || {};
+            if (cfg.type === 'order') {
+                const order = Array.isArray(state) ? state : cfg.initial;
+                return [cfg.answer.filter((id, i) => order[i] === id).length, cfg.answer.length];
+            }
+            if (cfg.type === 'multi') {
+                const chosen = Array.isArray(state) ? state : [];
+                const ok = cfg.options.filter(o => cfg.answer.includes(o.id) === chosen.includes(o.id)).length;
+                return [ok, cfg.options.length];
+            }
+            const keys = Object.keys(cfg.answer);
+            return [keys.filter(k => state[k] === cfg.answer[k]).length, keys.length];
+        }
+
+        function isAnswered(qId) {
+            const q = INTERACTIVE[qId];
+            if (!q) return userAnswers[qId] !== undefined;
+            return q.parts.every((cfg, p) => isPartAnswered(cfg, getPartState(qId, p)));
+        }
+
+        function evaluateQuestion(qId) {
+            const q = INTERACTIVE[qId];
+            if (!q) return { correct: userAnswers[qId] === ANSWER_KEY[qId] };
+            let ok = 0, total = 0;
+            q.parts.forEach((cfg, p) => {
+                const [c, t] = scorePart(cfg, getPartState(qId, p));
+                ok += c; total += t;
+            });
+            return { correct: ok === total, ok, total };
+        }
+
+        function markClass(isRight) {
+            return isRight ? 'border-emerald-500 bg-emerald-50' : 'border-rose-500 bg-rose-50';
+        }
+
+        function renderInteractive(qId) {
+            const container = document.querySelector(`.q-interactive[data-qid="${qId}"]`);
+            if (!container) return;
+            const marked = isMarked(qId);
+            const parts = INTERACTIVE[qId].parts.map((cfg, p) => {
+                const state = getPartState(qId, p);
+                const sel = pendingSelection[selKey(qId, p)];
+                const renderer = { match: renderMatch, fill: renderFill, order: renderOrder, classify: renderClassify, multi: renderMulti }[cfg.type];
+                const title = cfg.title ? `<p class="text-xs font-bold text-slate-700">${cfg.title}</p>` : '';
+                return `<div class="space-y-2" data-qid="${qId}" data-part="${p}">${title}${renderer(cfg, state, sel, marked)}</div>`;
+            }).join('<hr class="border-slate-100">');
+
+            container.innerHTML = `
+                <div class="space-y-4">
+                    ${parts}
+                    <div class="flex flex-wrap gap-2 pt-1">
+                        <button type="button" data-act="check" class="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition active:scale-95">
+                            <i class="fa-solid fa-check-double" aria-hidden="true"></i> تحقق من إجابتي
+                        </button>
+                        <button type="button" data-act="clear" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-bold px-3 py-2 rounded-lg transition active:scale-95">
+                            <i class="fa-solid fa-eraser" aria-hidden="true"></i> مسح هذا السؤال
+                        </button>
+                    </div>
+                </div>`;
+            requestAnimationFrame(() => container.querySelectorAll('.match-wrap').forEach(drawMatchLines));
+        }
+
+        // Matching: tap an item on one side, then its partner on the other side to draw a line
+        function renderMatch(cfg, state, sel, marked) {
+            state = state || {};
+            const item = (side, it, idx) => {
+                const isSel = sel && sel.side === side && sel.id === it.id;
+                const linked = side === 'L' ? !!state[it.id] : Object.values(state).includes(it.id);
+                let cls = 'border-slate-200 bg-white hover:bg-slate-50';
+                if (side === 'L' && marked) {
+                    cls = linked ? markClass(state[it.id] === cfg.answer[it.id]) : 'border-amber-400 bg-amber-50';
+                } else if (linked) {
+                    cls = 'border-blue-300 bg-blue-50/40';
+                }
+                if (isSel) cls = 'border-blue-600 bg-blue-50 ring-2 ring-blue-300';
+                const dot = side === 'L'
+                    ? `<span class="shrink-0 w-2.5 h-2.5 rounded-full" style="background:${LINE_COLORS[idx % LINE_COLORS.length]}"></span>`
+                    : '';
+                return `<button type="button" data-act="match" data-side="${side}" data-id="${it.id}"
+                            class="match-item w-full text-right flex items-center gap-2 p-2.5 rounded-xl border-2 text-xs font-semibold leading-snug transition ${cls}">${dot}<span>${it.t}</span></button>`;
+            };
+            return `
+                <p class="text-[11px] text-slate-500"><i class="fa-solid fa-hand-pointer ml-1"></i>اضغط على عنصر في العمود الأول ثم على ما يلائمه في العمود الثاني لمد خط بينهما. اضغط على نفس الزوج مجدداً لإزالة الخط.${cfg.oneToOne ? '' : ' يمكن ربط أكثر من جهاز بنفس الوظيفة.'}</p>
+                <div class="match-wrap relative grid grid-cols-2 gap-x-10 sm:gap-x-16">
+                    <svg class="match-lines absolute inset-0 w-full h-full pointer-events-none overflow-visible" aria-hidden="true"></svg>
+                    <div class="flex flex-col gap-2">
+                        <div class="text-[11px] font-bold text-slate-400 text-center">${cfg.leftTitle}</div>
+                        ${cfg.left.map((it, i) => item('L', it, i)).join('')}
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div class="text-[11px] font-bold text-slate-400 text-center">${cfg.rightTitle}</div>
+                        <div class="flex flex-col justify-around gap-2 flex-1">${cfg.right.map((it, i) => item('R', it, i)).join('')}</div>
+                    </div>
+                </div>`;
+        }
+
+        function drawMatchLines(wrap) {
+            if (!wrap.offsetParent) return; // hidden tab: redrawn when shown
+            const holder = wrap.closest('[data-part]');
+            const qId = holder.dataset.qid;
+            const p = +holder.dataset.part;
+            const cfg = INTERACTIVE[qId].parts[p];
+            const state = getPartState(qId, p) || {};
+            const marked = isMarked(qId);
+            const svg = wrap.querySelector('svg.match-lines');
+            const wr = wrap.getBoundingClientRect();
+            let out = '';
+            cfg.left.forEach((it, idx) => {
+                const rId = state[it.id];
+                if (!rId) return;
+                const a = wrap.querySelector(`[data-side="L"][data-id="${it.id}"]`).getBoundingClientRect();
+                const b = wrap.querySelector(`[data-side="R"][data-id="${rId}"]`).getBoundingClientRect();
+                // Connect the inner edges facing each other (works in RTL and LTR)
+                const x1 = (a.left > b.left ? a.left : a.right) - wr.left;
+                const x2 = (a.left > b.left ? b.right : b.left) - wr.left;
+                const y1 = a.top + a.height / 2 - wr.top;
+                const y2 = b.top + b.height / 2 - wr.top;
+                const mx = (x1 + x2) / 2;
+                const color = marked ? (rId === cfg.answer[it.id] ? '#10b981' : '#f43f5e') : LINE_COLORS[idx % LINE_COLORS.length];
+                out += `<path d="M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="${x1}" cy="${y1}" r="4" fill="${color}"/><circle cx="${x2}" cy="${y2}" r="4" fill="${color}"/>`;
+            });
+            svg.innerHTML = out;
+        }
+
+        function redrawAllLines() {
+            document.querySelectorAll('.match-wrap').forEach(drawMatchLines);
+        }
+
+        // Diagram fill-in: tap a word from the bank, then tap a blank (or the other way round)
+        function renderFill(cfg, state, sel, marked) {
+            state = state || {};
+            const used = Object.values(state);
+            const wordText = id => (cfg.bank.find(w => w.id === id) || {}).t;
+            const slot = sid => {
+                const wid = state[sid];
+                const isSel = sel && sel.slot === sid;
+                let cls = wid ? 'border-blue-400 bg-blue-50 text-blue-900 border-solid' : 'border-slate-300 bg-white text-slate-400 border-dashed';
+                if (marked) cls = wid ? markClass(wid === cfg.answer[sid]) + ' text-slate-800 border-solid' : 'border-amber-400 bg-amber-50 text-amber-700 border-dashed';
+                if (isSel) cls = 'border-blue-600 bg-blue-50 ring-2 ring-blue-300 text-blue-700 border-solid';
+                return `<button type="button" data-act="slot" data-id="${sid}" class="inline-block align-middle min-w-[5.5rem] max-w-full mx-0.5 my-0.5 px-2 py-1 rounded-lg border-2 text-xs font-bold transition ${cls}">${wid ? wordText(wid) : '_____'}</button>`;
+            };
+            const tones = { rose: 'border-rose-200 bg-rose-50/50', sky: 'border-sky-200 bg-sky-50/50' };
+            const columns = cfg.columns.map(col => `
+                <div class="space-y-1.5">
+                    ${col.title ? `<div class="text-[11px] font-bold text-slate-500 text-center">${col.title}</div>` : ''}
+                    ${col.boxes.map((box, i) => `
+                        ${i > 0 ? '<div class="text-center text-slate-400 text-xs"><i class="fa-solid fa-arrow-down"></i></div>' : ''}
+                        <div class="p-2.5 rounded-xl border ${tones[col.tone] || 'border-slate-200 bg-slate-50'} text-xs leading-loose">
+                            <div class="text-[10px] font-bold text-slate-500">${box.label}:</div>
+                            <div class="font-semibold text-slate-700">${box.html.replace(/\{(\w+)\}/g, (_, sid) => slot(sid))}</div>
+                        </div>`).join('')}
+                    ${col.loopBack ? `<div class="text-center text-[11px] font-bold text-emerald-600"><i class="fa-solid fa-rotate-left ml-1"></i>${col.loopBack}</div>` : ''}
+                </div>`).join('');
+            const bank = cfg.bank.map(w => {
+                if (used.includes(w.id)) return '';
+                const isSel = sel && sel.word === w.id;
+                return `<button type="button" data-act="word" data-id="${w.id}" class="px-2.5 py-1.5 rounded-lg border-2 text-xs font-semibold transition active:scale-95 ${isSel ? 'border-blue-600 bg-blue-600 text-white' : 'border-indigo-200 bg-indigo-50 text-indigo-800 hover:bg-indigo-100'}">${w.t}</button>`;
+            }).join('');
+            return `
+                <div class="rounded-xl bg-slate-50 border border-slate-200 p-3 space-y-2">
+                    <div class="text-[11px] font-bold text-slate-500"><i class="fa-solid fa-boxes-stacked ml-1"></i>بنك الكلمات — اضغط على كلمة ثم على الفراغ المناسب (اضغط على فراغ ممتلئ لإفراغه)</div>
+                    <div class="flex flex-wrap gap-1.5">${bank || '<span class="text-[11px] text-slate-400">تم استخدام جميع الكلمات</span>'}</div>
+                </div>
+                ${cfg.center ? `<div class="mx-auto w-fit px-4 py-2 rounded-xl bg-emerald-100 border-2 border-emerald-400 text-emerald-900 text-xs font-black text-center">${cfg.center}</div>` : ''}
+                <div class="grid gap-3 ${cfg.columns.length > 1 ? 'sm:grid-cols-2' : ''}">${columns}</div>`;
+        }
+
+        // Ordering: move steps up/down into the right sequence
+        function renderOrder(cfg, state, sel, marked) {
+            const order = Array.isArray(state) ? state : cfg.initial;
+            const txt = id => cfg.items.find(it => it.id === id).t;
+            return `
+                <p class="text-[11px] text-slate-500"><i class="fa-solid fa-arrows-up-down ml-1"></i>استخدم الأسهم لتحريك كل مرحلة إلى مكانها الصحيح.</p>
+                <ol class="space-y-1.5">
+                    ${order.map((id, i) => `
+                        <li class="flex items-center gap-2 p-2 rounded-xl border-2 text-xs font-semibold transition ${marked ? markClass(cfg.answer[i] === id) : 'border-slate-200 bg-white'}">
+                            <span class="shrink-0 w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-[11px] font-black">${i + 1}</span>
+                            <span class="flex-1 leading-snug">${txt(id)}</span>
+                            <span class="flex flex-col gap-0.5">
+                                <button type="button" data-act="order" data-id="${id}" data-dir="-1" ${i === 0 ? 'disabled' : ''} aria-label="تحريك للأعلى" class="w-7 h-6 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-30 text-slate-600"><i class="fa-solid fa-chevron-up text-[10px]"></i></button>
+                                <button type="button" data-act="order" data-id="${id}" data-dir="1" ${i === order.length - 1 ? 'disabled' : ''} aria-label="تحريك للأسفل" class="w-7 h-6 rounded-md bg-slate-100 hover:bg-slate-200 disabled:opacity-30 text-slate-600"><i class="fa-solid fa-chevron-down text-[10px]"></i></button>
+                            </span>
+                        </li>`).join('')}
+                </ol>`;
+        }
+
+        // Classifying: pick a category for each item
+        function renderClassify(cfg, state, sel, marked) {
+            state = state || {};
+            const tones = { rose: 'bg-rose-600 border-rose-600 text-white', emerald: 'bg-emerald-600 border-emerald-600 text-white' };
+            return `
+                <div class="space-y-2">
+                    ${cfg.items.map(it => {
+                        const chosen = state[it.id];
+                        const rowCls = marked ? (chosen ? markClass(chosen === cfg.answer[it.id]) : 'border-amber-400 bg-amber-50') : 'border-slate-200 bg-white';
+                        return `
+                        <div class="p-2.5 rounded-xl border-2 ${rowCls} space-y-2">
+                            <div class="text-xs font-semibold text-slate-800">${it.t}</div>
+                            <div class="grid grid-cols-2 gap-1.5">
+                                ${cfg.buckets.map(b => `
+                                    <button type="button" data-act="classify" data-id="${it.id}" data-bucket="${b.id}"
+                                        class="px-2 py-1.5 rounded-lg border-2 text-[11px] font-bold transition active:scale-95 ${chosen === b.id ? tones[b.tone] : 'border-slate-200 bg-slate-50 text-slate-600 hover:bg-slate-100'}">${b.t}</button>`).join('')}
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>`;
+        }
+
+        // Multi-select: toggle every option that applies
+        function renderMulti(cfg, state, sel, marked) {
+            const chosen = Array.isArray(state) ? state : [];
+            return `
+                <div class="flex flex-wrap gap-2">
+                    ${cfg.options.map(o => {
+                        const on = chosen.includes(o.id);
+                        const should = cfg.answer.includes(o.id);
+                        let cls = on ? 'border-blue-600 bg-blue-600 text-white' : 'border-slate-200 bg-white text-slate-700 hover:bg-slate-50';
+                        if (marked) {
+                            if (on) cls = should ? 'border-emerald-600 bg-emerald-600 text-white' : 'border-rose-600 bg-rose-600 text-white';
+                            else if (should) cls = 'border-amber-400 border-dashed bg-amber-50 text-amber-800';
+                        }
+                        return `<button type="button" data-act="multi" data-id="${o.id}" aria-pressed="${on}" class="px-3 py-2 rounded-xl border-2 text-xs font-bold transition active:scale-95 ${cls}">${on ? '<i class="fa-solid fa-check ml-1"></i>' : ''}${o.t}</button>`;
+                    }).join('')}
+                </div>`;
+        }
+
+        function handleInteractiveClick(e) {
+            const el = e.target.closest('.q-interactive [data-act]');
+            if (!el) return;
+            const qId = el.closest('.q-interactive').dataset.qid;
+            const act = el.dataset.act;
+
+            if (act === 'check') {
+                checkedCards.add(qId);
+                renderInteractive(qId);
+                renderFeedback(qId);
+                return;
+            }
+            if (act === 'clear') {
+                delete userAnswers[qId];
+                INTERACTIVE[qId].parts.forEach((_, p) => delete pendingSelection[selKey(qId, p)]);
+                checkedCards.delete(qId);
+                if (!quizSubmitted) hideFeedback(qId);
+                renderInteractive(qId);
+                saveProgress();
+                updateProgressStats();
+                return;
+            }
+
+            const p = +el.closest('[data-part]').dataset.part;
+            const cfg = INTERACTIVE[qId].parts[p];
+            const k = selKey(qId, p);
+            const id = el.dataset.id;
+            const sel = pendingSelection[k];
+            const state = getPartState(qId, p);
+
+            if (act === 'match') {
+                const side = el.dataset.side;
+                if (!sel || sel.side === side) {
+                    pendingSelection[k] = (sel && sel.id === id) ? undefined : { side, id };
+                    renderInteractive(qId);
+                    return;
+                }
+                const l = side === 'L' ? id : sel.id;
+                const r = side === 'R' ? id : sel.id;
+                const next = { ...(state || {}) };
+                if (next[l] === r) {
+                    delete next[l];
+                } else {
+                    if (cfg.oneToOne) Object.keys(next).forEach(key => { if (next[key] === r) delete next[key]; });
+                    next[l] = r;
+                }
+                delete pendingSelection[k];
+                setPartState(qId, p, next);
+            } else if (act === 'word' || act === 'slot') {
+                const next = { ...(state || {}) };
+                const place = (sid, wid) => {
+                    Object.keys(next).forEach(key => { if (next[key] === wid) delete next[key]; });
+                    next[sid] = wid;
+                    delete pendingSelection[k];
+                    setPartState(qId, p, next);
+                };
+                if (act === 'word') {
+                    if (sel && sel.slot) return place(sel.slot, id);
+                    pendingSelection[k] = (sel && sel.word === id) ? undefined : { word: id };
+                    renderInteractive(qId);
+                } else {
+                    if (sel && sel.word) return place(id, sel.word);
+                    if (next[id]) {
+                        delete next[id];
+                        delete pendingSelection[k];
+                        return setPartState(qId, p, next);
+                    }
+                    pendingSelection[k] = (sel && sel.slot === id) ? undefined : { slot: id };
+                    renderInteractive(qId);
+                }
+            } else if (act === 'order') {
+                const next = [...(Array.isArray(state) ? state : cfg.initial)];
+                const i = next.indexOf(id);
+                const j = i + Number(el.dataset.dir);
+                if (j < 0 || j >= next.length) return;
+                [next[i], next[j]] = [next[j], next[i]];
+                setPartState(qId, p, next);
+            } else if (act === 'classify') {
+                setPartState(qId, p, { ...(state || {}), [id]: el.dataset.bucket });
+            } else if (act === 'multi') {
+                const cur = Array.isArray(state) ? state : [];
+                setPartState(qId, p, cur.includes(id) ? cur.filter(x => x !== id) : [...cur, id]);
+            }
+        }
+
+        // Correct solution, shown on demand after a wrong answer
+        function solutionHTML(qId) {
+            return INTERACTIVE[qId].parts.map(cfg => {
+                if (cfg.type === 'match') {
+                    return `<ul class="space-y-1">${cfg.left.map(it => `<li>• <b>${it.t}</b> ← ${cfg.right.find(r => r.id === cfg.answer[it.id]).t}</li>`).join('')}</ul>`;
+                }
+                if (cfg.type === 'fill') {
+                    const word = sid => `<b class="underline">${cfg.bank.find(w => w.id === cfg.answer[sid]).t}</b>`;
+                    return `<ul class="space-y-1">${cfg.columns.flatMap(col => col.boxes.map(box => `<li>• ${box.label}: ${box.html.replace(/\{(\w+)\}/g, (_, sid) => word(sid))}</li>`)).join('')}</ul>`;
+                }
+                if (cfg.type === 'order') {
+                    return `<ol class="space-y-1">${cfg.answer.map((id, i) => `<li>${i + 1}. ${cfg.items.find(it => it.id === id).t}</li>`).join('')}</ol>`;
+                }
+                if (cfg.type === 'classify') {
+                    return cfg.buckets.map(b => `<div><b>${b.t}:</b> ${cfg.items.filter(it => cfg.answer[it.id] === b.id).map(it => it.t).join('، ')}</div>`).join('');
+                }
+                if (cfg.type === 'multi') {
+                    return `<div><b>الإجابة:</b> ${cfg.options.filter(o => cfg.answer.includes(o.id)).map(o => o.t).join('، ')}</div>`;
+                }
+                return '';
+            }).join('<hr class="my-2 border-rose-200">');
+        }
+
+        function hideFeedback(qId) {
+            const feedback = document.querySelector(`#${qId} .q-feedback`);
+            feedback.classList.add('hidden');
+            feedback.innerHTML = '';
+        }
+
+        // Render feedback for one question; returns true when correct
+        function renderFeedback(qId) {
+            const card = document.getElementById(qId);
+            const feedback = card.querySelector('.q-feedback');
+            const result = evaluateQuestion(qId);
+            const interactive = !!INTERACTIVE[qId];
+
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-800');
+
+            if (result.correct) {
+                feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check ml-1 text-emerald-600"></i> إجابة صحيحة! ${EXPLANATIONS[qId]}`;
+                return true;
+            }
+
+            feedback.classList.add('bg-rose-100', 'text-rose-800');
+            const targetSec = card.dataset.targetSec;
+            const headline = interactive
+                ? `${isAnswered(qId) ? 'الإجابة غير صحيحة بالكامل' : 'الإجابة غير مكتملة'} — ${result.ok} من ${result.total} صحيحة.`
+                : `إجابة غير صحيحة. الإجابة الصحيحة هي (${AR_LETTERS[ANSWER_KEY[qId]]}).`;
+            feedback.innerHTML = `
+                <div class="space-y-1">
+                    <div><i class="fa-solid fa-circle-xmark ml-1 text-rose-600"></i> ${headline}</div>
+                    <div class="text-xs opacity-90">${EXPLANATIONS[qId]}</div>
+                    ${interactive ? `
+                        <details class="mt-1 bg-white/60 rounded-lg p-2">
+                            <summary class="cursor-pointer font-bold">عرض الحل الصحيح</summary>
+                            <div class="mt-2 font-normal leading-relaxed">${solutionHTML(qId)}</div>
+                        </details>` : ''}
+                    <button type="button" onclick="jumpToMaterial('${targetSec}')" class="mt-2 inline-flex items-center gap-1 bg-rose-600 text-white font-bold px-3 py-1 rounded-lg text-xs hover:bg-rose-700 transition">
+                        <i class="fa-solid fa-book-open"></i> اقرأ المادة التعليمية الخاصة بهذا السؤال
+                    </button>
+                </div>
+            `;
+            return false;
+        }
+
+        // Update Progress Bar & Counters
+        function updateProgressStats() {
+            const answeredCount = QUESTION_IDS.filter(isAnswered).length;
+            const total = QUESTION_IDS.length;
+            const percent = Math.round((answeredCount / total) * 100);
+
+            document.getElementById('quiz-progress-text').textContent = `${answeredCount} / ${total} إجابة`;
+            document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+
+            if (quizSubmitted) {
+                calculateResults();
+            }
+        }
+
+        // Submit Quiz
+        function submitQuiz() {
+            quizSubmitted = true;
+            Object.keys(INTERACTIVE).forEach(renderInteractive);
+            calculateResults();
+            saveProgress();
+            
+            // Scroll to score summary
+            const summary = document.getElementById('quiz-score-summary');
+            summary.classList.remove('hidden');
+            summary.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Calculate and Show Score
+        function calculateResults() {
+            let correct = 0;
+            let wrong = 0;
+            const total = QUESTION_IDS.length;
+            const wrongList = [];
+
+            for (const qId of QUESTION_IDS) {
+                if (renderFeedback(qId)) {
+                    correct++;
+                } else {
+                    wrong++;
+                    wrongList.push({ qId, targetSec: document.getElementById(qId).dataset.targetSec });
+                }
+            }
+
+            const score = Math.round((correct / total) * 100);
+
+            // Update UI elements
+            document.getElementById('stat-correct').textContent = correct;
+            document.getElementById('stat-wrong').textContent = wrong;
+            document.getElementById('stat-score').textContent = `${score}%`;
+
+            document.getElementById('final-correct').textContent = correct;
+            document.getElementById('final-wrong').textContent = wrong;
+            document.getElementById('final-score').textContent = `${score}%`;
+
+            const badge = document.getElementById('final-badge');
+            if (score >= 85) {
+                badge.textContent = "ممتاز جداً! 🎉";
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-400 text-slate-950";
+            } else if (score >= 60) {
+                badge.textContent = "جيد! تابع المراجعة 👍";
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-yellow-400 text-slate-950";
+            } else {
+                badge.textContent = "يحتاج إلى مراجعة المادة 📖";
+                badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-rose-400 text-slate-950";
+            }
+
+            // Populate Remediation List
+            const remContainer = document.getElementById('remediation-container');
+            if (wrongList.length > 0) {
+                remContainer.innerHTML = `
+                    <div class="text-xs font-bold text-slate-300 mb-2">الأسئلة التي تحتاج مراجعة:</div>
+                    <div class="flex flex-wrap gap-2">
+                        ${wrongList.map(item => `
+                            <button onclick="jumpToMaterial('${item.targetSec}')" class="bg-white/10 hover:bg-white/20 text-xs px-3 py-1.5 rounded-lg text-rose-200 border border-rose-400/30 flex items-center gap-1 transition">
+                                <i class="fa-solid fa-arrow-right-left"></i> ${item.qId.toUpperCase()} - مراجعة المادة
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                remContainer.innerHTML = `<div class="text-xs text-emerald-300 font-bold">أحسنت! لقد أجبت على جميع الأسئلة بشكل صحيح!</div>`;
+            }
+        }
+
+        // Jump to specific study material section (Wrong answer jump)
+        function jumpToMaterial(sectionId) {
+            switchTab('study');
+            filterMaterial('all');
+
+            setTimeout(() => {
+                const targetCard = document.getElementById(sectionId);
+                if (targetCard) {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    targetCard.classList.add('highlight-material');
+                    setTimeout(() => {
+                        targetCard.classList.remove('highlight-material');
+                    }, 2500);
+                }
+            }, 100);
+        }
+
+        // Go from Study section to corresponding Quiz question
+        function goToQuizQuestion(qId) {
+            switchTab('quiz');
+            setTimeout(() => {
+                const qCard = document.getElementById(qId);
+                if (qCard) {
+                    qCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // Retake Quiz
+        function retakeQuiz() {
+            document.getElementById('quiz-score-summary').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Fill all answers with the correct solutions (for review)
+        function fillAllCorrect() {
+            // 1. Multiple-choice (radio) questions
+            Object.keys(ANSWER_KEY).forEach(qId => {
+                userAnswers[qId] = ANSWER_KEY[qId];
+                const radio = document.querySelector(`input[name="${qId}"][value="${ANSWER_KEY[qId]}"]`);
+                if (radio) radio.checked = true;
+            });
+            // 2. Interactive questions
+            Object.keys(INTERACTIVE).forEach(qId => {
+                userAnswers[qId] = INTERACTIVE[qId].parts.map(cfg => {
+                    if (cfg.type === 'order' || cfg.type === 'multi') return [...cfg.answer];
+                    return { ...cfg.answer };
+                });
+                INTERACTIVE[qId].parts.forEach((_, p) => delete pendingSelection[selKey(qId, p)]);
+                renderInteractive(qId);
+                if (quizSubmitted) renderFeedback(qId);
+                else hideFeedback(qId);
+            });
+            checkedCards.clear();
+            saveProgress();
+            updateProgressStats();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Reset All Data
+        function resetProgress() {
+            userAnswers = {};
+            quizSubmitted = false;
+            checkedCards.clear();
+            Object.keys(pendingSelection).forEach(k => delete pendingSelection[k]);
+            localStorage.removeItem(STORAGE_KEY);
+
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('.q-feedback').forEach(f => {
+                f.classList.add('hidden');
+                f.innerHTML = '';
+            });
+            Object.keys(INTERACTIVE).forEach(renderInteractive);
+
+            document.getElementById('quiz-score-summary').classList.add('hidden');
+            updateProgressStats();
+            alert('تمت إعادة ضبط كافة الإجابات والدرجات بنجاح.');
+        }
+
+        // Save & Load Local Storage
+        function saveProgress() {
+            const data = {
+                userAnswers,
+                quizSubmitted
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    userAnswers = data.userAnswers || {};
+                    quizSubmitted = data.quizSubmitted || false;
+
+                    // Restore multiple-choice selections
+                    for (let name in userAnswers) {
+                        if (typeof userAnswers[name] !== 'string') continue;
+                        const radio = document.querySelector(`input[name="${name}"][value="${userAnswers[name]}"]`);
+                        if (radio) radio.checked = true;
+                    }
+                } catch (e) {
+                    console.error('Failed to load saved progress:', e);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

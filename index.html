@@ -8,128 +8,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Cairo (Arabic) + Anton (display) + Space Mono (labels) -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0a0a0a;
-            --panel: #131313;
-            --panel2: #1a1a1a;
-            --line: #262626;
-            --paper: #ede9e1;
-            --muted: #a3a099;
-            --dim: #6b6862;
-            --accent: #ff4d1a;
-            --accent-ink: #0a0a0a;
-        }
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg);
-            color: var(--paper);
+            background-color: #f8fafc;
             touch-action: manipulation;
             -webkit-tap-highlight-color: transparent;
         }
-        .silo-label {
-            font-family: 'Space Mono', monospace;
-            color: var(--accent);
-            letter-spacing: 0.28em;
-            font-size: 11px;
-            font-weight: 700;
-        }
-        .silo-huge {
-            font-family: 'Anton', 'Cairo', sans-serif;
-            font-weight: 400;
-            line-height: 0.95;
-            letter-spacing: 0.01em;
-            text-transform: uppercase;
-        }
-        .silo-huge-ar {
-            font-family: 'Cairo', sans-serif;
-            font-weight: 900;
-            line-height: 1.05;
-        }
-        .silo-stat-num {
-            font-family: 'Anton', 'Cairo', sans-serif;
-            font-size: 2rem;
-            line-height: 1;
-        }
-        .silo-stat-cap {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            letter-spacing: 0.2em;
-            color: var(--muted);
-        }
-        /* Flatten + darken all light cards */
-        .bg-white { background-color: var(--panel) !important; }
-        .bg-slate-50, .bg-slate-100 { background-color: var(--panel2) !important; }
-        .border-slate-200 { border-color: var(--line) !important; }
-        .border-slate-100 { border-color: var(--line) !important; }
-        .text-slate-800, .text-slate-700 { color: var(--paper) !important; }
-        .text-slate-600, .text-slate-500 { color: var(--muted) !important; }
-        .text-slate-400 { color: var(--dim) !important; }
-        .question-card, .mat-card {
-            border-radius: 6px !important;
-            box-shadow: none !important;
-        }
-        .q-option:hover, .match-item:hover { background-color: #222 !important; }
-        /* Nav + filters active state */
-        .nav-btn { border: 1px solid var(--line); color: var(--muted); background: transparent; }
-        .nav-btn.silo-active { background: var(--accent) !important; color: #000 !important; border-color: var(--accent) !important; }
-        .mat-filter-btn.bg-blue-600 { background: var(--accent) !important; color: #000 !important; }
-        #quiz-progress-bar { background: var(--accent) !important; }
-        /* Primary buttons go orange */
-        .bg-blue-600, .bg-indigo-600, .bg-emerald-600 { background-color: var(--accent) !important; border-color: var(--accent) !important; color: #000 !important; }
-        .hover\:bg-blue-700:hover, .hover\:bg-indigo-700:hover, .hover\:bg-emerald-700:hover { background-color: #ff6a3d !important; }
-        .text-blue-600, .text-blue-700, .text-indigo-600, .text-indigo-700 { color: var(--accent) !important; }
-        .bg-blue-50, .bg-indigo-50 { background-color: rgba(255,77,26,.12) !important; }
-        .bg-blue-100, .bg-indigo-100 { background-color: rgba(255,77,26,.15) !important; color: var(--accent) !important; }
-        .text-blue-800, .text-indigo-800 { color: var(--accent) !important; }
-        .accent-blue-600 { accent-color: var(--accent) !important; }
-        /* Keep right/wrong feedback readable on dark */
-        .bg-emerald-100 { background-color: rgba(16,185,129,.15) !important; }
-        .bg-rose-100 { background-color: rgba(244,63,94,.15) !important; }
-        .bg-amber-100 { background-color: rgba(245,158,11,.15) !important; }
-        footer { background: #0a0a0a !important; border-color: var(--line) !important; color: var(--dim) !important; }
         .highlight-material {
             animation: pulseHighlight 2.5s ease-in-out;
-            border: 3px solid var(--accent) !important;
-            box-shadow: 0 0 20px rgba(255,77,26,.4) !important;
+            border: 3px solid #3b82f6 !important;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4) !important;
         }
         @keyframes pulseHighlight {
             0% { transform: scale(0.99); opacity: 0.8; }
             50% { transform: scale(1.02); opacity: 1; }
             100% { transform: scale(1); opacity: 1; }
         }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #131313; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-[#ff4d1a] selection:text-black">
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col justify-between selection:bg-blue-200">
 
     <!-- Header Navigation -->
-    <header class="bg-[#0a0a0a] border-b border-[#262626] text-[#ede9e1] sticky top-0 z-50">
+    <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-700 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="border border-[#262626] px-2 py-1">
-                    <i class="fa-solid font-bold fa-dna text-lg text-[#ff4d1a]"></i>
+                <div class="bg-white/20 p-2 rounded-xl backdrop-blur-sm">
+                    <i class="fa-solid font-bold fa-dna text-xl text-yellow-300"></i>
                 </div>
                 <div>
-                    <div class="silo-label">BIO · EXAM VAULT</div>
-                    <h1 class="text-base md:text-lg font-black leading-tight">من الذرات إلى الجسم الكامل</h1>
+                    <h1 class="text-lg md:text-xl font-bold leading-tight">من الذرات إلى الجسم الكامل</h1>
+                    <p class="text-xs text-blue-100 hidden sm:block">بيولوجيا الإنسان - مراجعة مكثفة للأرقام 1-30</p>
                 </div>
             </div>
             
             <div class="flex items-center space-x-2 space-x-reverse">
-                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn px-3 py-1.5 rounded text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
                     <i class="fa-solid fa-house text-xs"></i>
                     <span>الرئيسية</span>
                 </button>
-                <button onclick="switchTab('study')" id="btn-study" class="nav-btn px-3 py-1.5 rounded text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                <button onclick="switchTab('study')" id="btn-study" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
                     <i class="fa-solid fa-book-open text-xs"></i>
                     <span>المادة</span>
                 </button>
-                <button onclick="switchTab('quiz')" id="btn-quiz" class="nav-btn px-3 py-1.5 rounded text-sm font-semibold transition active:scale-95 flex items-center gap-1.5">
+                <button onclick="switchTab('quiz')" id="btn-quiz" class="nav-btn px-3 py-1.5 rounded-lg text-sm font-semibold transition bg-white/10 hover:bg-white/20 active:scale-95 flex items-center gap-1.5">
                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                     <span>الأسئلة</span>
                 </button>
@@ -141,49 +75,51 @@
 
         <!-- DASHBOARD VIEW -->
         <section id="view-dashboard" class="space-y-6">
-            <!-- Welcome Banner - SILO style -->
-            <div class="bg-[#0a0a0a] border-y border-[#262626] py-8">
-                <div class="silo-label mb-4">BIO · PERSONAL VAULT</div>
-                <div class="flex flex-col md:flex-row md:items-end gap-8">
-                    <div class="flex-1">
-                        <h2 class="silo-huge-ar text-5xl md:text-7xl text-[#ede9e1]">أشياء تستحق</h2>
-                        <h2 class="silo-huge-ar text-5xl md:text-7xl text-[#ff4d1a]">التذكر</h2>
-                        <p class="text-[#a3a099] text-sm md:text-base leading-relaxed mt-4 max-w-xl">
-                            جدار مراجعة عملي للبيولوجيا: من الذرات إلى الجسم الكامل. كل سؤال يحمل مصدره من العرض، والملاحظة التي أكسبته مكانه. برنامج مكثف (6 ساعات) يغطي الأسئلة 1 إلى 30.
-                        </p>
-                        <div class="pt-4 flex flex-wrap gap-3">
-                            <button onclick="startDay(1)" class="bg-[#ff4d1a] hover:bg-[#ff6a3d] text-black font-bold px-5 py-2.5 rounded text-sm transition active:scale-95 flex items-center gap-2">
-                                <i class="fa-solid fa-play text-xs"></i>
-                                <span>ابدأ اليوم الأول (الاتزان البدني)</span>
-                            </button>
-                            <button onclick="startDay(2)" class="border border-[#333] hover:border-[#ff4d1a] text-[#ede9e1] font-bold px-5 py-2.5 rounded text-sm transition active:scale-95 flex items-center gap-2">
-                                <i class="fa-solid fa-diagram-project text-xs"></i>
-                                <span>ابدأ اليوم الثاني (أجهزة الجسم)</span>
-                            </button>
-                        </div>
+            <!-- Welcome Banner -->
+            <div class="bg-gradient-to-br from-indigo-600 to-blue-700 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -left-6 -bottom-6 opacity-10 text-9xl">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div class="relative z-10 space-y-3">
+                    <span class="bg-yellow-400 text-slate-900 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">برنامج التحضير المكثف (6 ساعات)</span>
+                    <h2 class="text-2xl md:text-3xl font-extrabold">خطتك للنجاح في امتحان البيولوجيا</h2>
+                    <p class="text-slate-100 text-sm md:text-base leading-relaxed">
+                        مرحباً بك! تم تقسيم المادة والأجزاء العملية لليوم الأول واليوم الثاني بمعدل 3 ساعات لكل يوم. يغطي التطبيق كافة أسئلة العرض التقديمي (من سؤال 1 إلى 30).
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="startDay(1)" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-play text-xs"></i>
+                            <span>ابدأ اليوم الأول (الاتزان البدني)</span>
+                        </button>
+                        <button onclick="startDay(2)" class="bg-white/20 hover:bg-white/30 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-diagram-project text-xs"></i>
+                            <span>ابدأ اليوم الثاني (أجهزة الجسم)</span>
+                        </button>
                     </div>
-                    <div class="md:border-l md:border-[#262626] md:pl-8 grid grid-cols-2 gap-x-10 gap-y-6 shrink-0">
-                        <div>
-                            <div class="silo-stat-num text-[#ede9e1]" id="stat-total-questions">30</div>
-                            <div class="silo-stat-cap">PROOFS</div>
-                            <div class="text-xs text-[#6b6862]">مجموع الأسئلة</div>
-                        </div>
-                        <div>
-                            <div class="silo-stat-num text-[#ff4d1a]" id="stat-correct">0</div>
-                            <div class="silo-stat-cap">KEPT</div>
-                            <div class="text-xs text-[#6b6862]">إجابات صحيحة</div>
-                        </div>
-                        <div>
-                            <div class="silo-stat-num text-[#ede9e1]" id="stat-wrong">0</div>
-                            <div class="silo-stat-cap">SHOWN</div>
-                            <div class="text-xs text-[#6b6862]">إجابات خاطئة</div>
-                        </div>
-                        <div>
-                            <div class="silo-stat-num text-[#ede9e1]" id="stat-score">0%</div>
-                            <div class="silo-stat-cap">DOSSIERS</div>
-                            <div class="text-xs text-[#6b6862]">النسبة المئوية</div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+
+            <!-- Stats & Progress -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-bullseye text-blue-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-slate-800" id="stat-total-questions">30</div>
+                    <div class="text-xs text-slate-500 font-medium">مجموع الأسئلة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-emerald-600" id="stat-correct">0</div>
+                    <div class="text-xs text-slate-500 font-medium">إجابات صحيحة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-circle-xmark text-rose-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-rose-600" id="stat-wrong">0</div>
+                    <div class="text-xs text-slate-500 font-medium">إجابات خاطئة</div>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
+                    <i class="fa-solid fa-chart-pie text-indigo-600 text-2xl mb-1"></i>
+                    <div class="text-2xl font-bold text-indigo-600" id="stat-score">0%</div>
+                    <div class="text-xs text-slate-500 font-medium">النسبة المئوية</div>
                 </div>
             </div>
 
@@ -1485,7 +1421,6 @@
         // Initialize App
         window.addEventListener('DOMContentLoaded', () => {
             loadProgress();
-            document.getElementById('btn-dashboard')?.classList.add('silo-active');
             Object.keys(INTERACTIVE).forEach(qId => {
                 const badge = document.querySelector(`#${qId} > div > span`);
                 if (badge) badge.insertAdjacentHTML('beforeend', ' <span class="mr-1 text-[10px] bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded-md"><i class="fa-solid fa-hand-pointer"></i> تفاعلي</span>');
@@ -1509,13 +1444,15 @@
             document.getElementById('view-quiz').classList.add('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('silo-active');
+                btn.classList.remove('bg-white', 'text-blue-700');
+                btn.classList.add('bg-white/10', 'text-white');
             });
 
             document.getElementById(`view-${tabId}`).classList.remove('hidden');
             const activeBtn = document.getElementById(`btn-${tabId}`);
             if (activeBtn) {
-                activeBtn.classList.add('silo-active');
+                activeBtn.classList.remove('bg-white/10', 'text-white');
+                activeBtn.classList.add('bg-white', 'text-blue-700');
             }
             if (tabId === 'quiz') requestAnimationFrame(redrawAllLines);
             window.scrollTo({ top: 0, behavior: 'smooth' });

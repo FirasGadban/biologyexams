@@ -50,7 +50,7 @@
                 </div>
                 <div>
                     <h1 class="text-lg md:text-xl font-bold leading-tight">من الذرات إلى الجسم الكامل</h1>
-                    <p class="text-xs text-blue-100 hidden sm:block">بيولوجيا الإنسان - مراجعة مكثفة للأرقام 1-30</p>
+                    <p class="text-xs text-blue-100 hidden sm:block">بيولوجيا الإنسان - مراجعة مكثفة للأرقام 1-50</p>
                 </div>
             </div>
             
@@ -84,7 +84,7 @@
                     <span class="bg-yellow-400 text-slate-900 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">برنامج التحضير المكثف (6 ساعات)</span>
                     <h2 class="text-2xl md:text-3xl font-extrabold">خطتك للنجاح في امتحان البيولوجيا</h2>
                     <p class="text-slate-100 text-sm md:text-base leading-relaxed">
-                        مرحباً بك! تم تقسيم المادة والأجزاء العملية لليوم الأول واليوم الثاني بمعدل 3 ساعات لكل يوم. يغطي التطبيق كافة أسئلة العرض التقديمي (من سؤال 1 إلى 30).
+                        مرحباً بك! تم تقسيم المادة والأجزاء العملية لليوم الأول واليوم الثاني بمعدل 3 ساعات لكل يوم. يغطي التطبيق كافة أسئلة العرض التقديمي (من سؤال 1 إلى 30) بالإضافة إلى 20 سؤالاً صعباً إثرائياً (سؤال 31 إلى 50).
                     </p>
                     <div class="pt-2 flex flex-wrap gap-3">
                         <button onclick="startDay(1)" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition active:scale-95 flex items-center gap-2">
@@ -103,7 +103,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
                     <i class="fa-solid fa-bullseye text-blue-600 text-2xl mb-1"></i>
-                    <div class="text-2xl font-bold text-slate-800" id="stat-total-questions">30</div>
+                    <div class="text-2xl font-bold text-slate-800" id="stat-total-questions">50</div>
                     <div class="text-xs text-slate-500 font-medium">مجموع الأسئلة</div>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-center">
@@ -378,8 +378,8 @@
             <!-- Quiz Progress Bar -->
             <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm sticky top-16 z-40 space-y-2">
                 <div class="flex justify-between items-center text-xs font-bold text-slate-700">
-                    <span>تقدم حل الأسئلة (30 سؤالاً)</span>
-                    <span id="quiz-progress-text">0 / 30 إجابة</span>
+                    <span>تقدم حل الأسئلة (50 سؤالاً)</span>
+                    <span id="quiz-progress-text">0 / 50 إجابة</span>
                 </div>
                 <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                     <div id="quiz-progress-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -1112,6 +1112,406 @@
                     <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
                 </div>
 
+                <!-- Q31 (صعب) -->
+                <div id="q31" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 31 (اتزان السكر) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ارتفع تركيز الجلوكوز في دم شخص بعد وجبة غنية بالسكريات. ما المسار الصحيح لتعديل هذا الانحراف؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q31" value="A" class="ml-2 accent-blue-600"> أ. إفراز الجلوكاجون ← تحلل الجلايكوجين في الكبد ← ارتفاع التركيز أكثر</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q31" value="B" class="ml-2 accent-blue-600"> ب. إفراز الجلوكاجون ← تخزين الجلوكوز الزائد كجلايكوجين في الكبد ← عودة الاتزان</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q31" value="C" class="ml-2 accent-blue-600"> ج. إفراز الانسولين ← زيادة دخول الجلوكوز إلى الخلايا ← انخفاض التركيز وعودة الاتزان (رد فعل عكسي للانحراف)</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q31" value="D" class="ml-2 accent-blue-600"> د. إفراز الانسولين ← تحلل الجلايكوجين في العضلات ← ارتفاع التركيز أكثر</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q32 (صعب) -->
+                <div id="q32" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 32 (التاريخ) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي الاقترانات التاريخية التالية صحيح تماماً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q32" value="A" class="ml-2 accent-blue-600"> أ. مرينج ومينكوفسكي درسا هضم المعدة لدى جندي أمريكي مصاب، وبومانت اكتشف أسباب السكري</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q32" value="B" class="ml-2 accent-blue-600"> ب. بومانت استأصل البنكرياس من الكلاب لدراسة السكري، ومرينج ومينكوفسكي درسا المعدة الجراحية</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q32" value="C" class="ml-2 accent-blue-600"> ج. العالمان تعاونا على دراسة هضم المعدة، فأكشفا آلية عمل الانسولين معاً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q32" value="D" class="ml-2 accent-blue-600"> د. بومانت (1785-1853) درس فعالية المعدة والهضم لدى جندي أمريكي مصاب بجرح مفتوح، ومرينج ومينكوفسكي (1889) اكتشفا أسباب السكري باستئصال البنكرياس من الكلاب</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q33 (صعب) -->
+                <div id="q33" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 33 (مكونات الدم) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما النتيجة الصحيحة لنسب مكونات الدم حسب المادة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q33" value="A" class="ml-2 accent-blue-600"> أ. 55% بلازما و45% خلايا (خلايا دم حمراء وبيضاء وصفائح)</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q33" value="B" class="ml-2 accent-blue-600"> ب. 45% بلازما و55% خلايا</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q33" value="C" class="ml-2 accent-blue-600"> ج. 75% خلايا و25% بلازما</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q33" value="D" class="ml-2 accent-blue-600"> د. 50% بلازما و50% خلايا</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q34 (صعب) -->
+                <div id="q34" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 34 (موقع التمركز) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الصحيح عن موقع تكوين اليوريا وعلاقتها بالأجهزة الأخرى؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q34" value="A" class="ml-2 accent-blue-600"> أ. تتكون في الكليتين وتتكسر في الرئتين وتخرج مع الزفير</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q34" value="B" class="ml-2 accent-blue-600"> ب. تتكسر في العضلات لتحرير الطاقة وتتنقل عبر الليمفا</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q34" value="C" class="ml-2 accent-blue-600"> ج. تتكون في الكبد (جهاز الهضم يخترق العلاقة بسلاسل الأحماض الأمينية) من تفاعل الأمونيا مع ثاني أكسيد الكربون، وينقلها الدم إلى الكليتين لتتخلص منها مع البول</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q34" value="D" class="ml-2 accent-blue-600"> د. تتكون في المعدة من هضم البروتينات وتخرج مع العرق خارج الجسم</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q35 (صعب) -->
+                <div id="q35" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 35 (الليمفا) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        اختر العبارة الأدق في وصف سائل الليمفا:
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q35" value="A" class="ml-2 accent-blue-600"> أ. يحوي خلايا دم حمراء وبيضاء ونسبة بروتينات أعلى من الدم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q35" value="B" class="ml-2 accent-blue-600"> ب. يشبه الدم، لكن تركيز البروتينات فيه أقل، ويحوي خلايا دم بيضاء فقط (لا حمراء ولا صفائح)، ويستوعب الأحماض الدهنية والجليسرول في الأمعاء الدقيقة ويعيد السوائل المرشحة إلى الدم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q35" value="C" class="ml-2 accent-blue-600"> ج. يضخ القلب سائل الليمفا بمساعدة الحجول النازعة للطبقات الثلاثة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q35" value="D" class="ml-2 accent-blue-600"> د. وظيفته الوحيدة التخلص من الأملاح الزائدة مع العرق</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q36 (صعب) -->
+                <div id="q36" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 36 (نقص الأكسجين) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تسلّق شخص قمة جبل عالية تعرض فيها للانخفاض وتكثف نقص الأكسجين. ما استجابة أجهزة الجسم المتوقعة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q36" value="A" class="ml-2 accent-blue-600"> أ. تباطؤ التنفس والراحة لتخزين الأكسجين المتبقي</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q36" value="B" class="ml-2 accent-blue-600"> ب. انخفاض انقباضات القلب وتباطؤ التنفس معاً لتوفير الأكسجين</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q36" value="C" class="ml-2 accent-blue-600"> ج. زيادة تورق الأوعية بالجلد وتوقف العرق لتوفير O2</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q36" value="D" class="ml-2 accent-blue-600"> د. تسارع التنفس (الشهيق والزفير) لتعويض النقص، وتسارع انقباضات القلب لضخ المزيد من الدم خارج القلب</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q37 (صعب) -->
+                <div id="q37" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 37 (الهضم) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي العبارات التالية هي الأدق في تعريف جهاز الهضم؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q37" value="A" class="ml-2 accent-blue-600"> أ. أنبوب من الفم حتى الشرج (فم، مريء، معدة، أمعاء) تتصل به غدد تفرز عصارات هاضمة، ووظيفته استيعاب الغذاء وتحليل المركبات المعقدة إلى بسيطة وامتصاصها ونقلها إلى جهاز النقل</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q37" value="B" class="ml-2 accent-blue-600"> ب. أنبوب من الأنف حتى الرئتين، ووظيفته استيعاب الأكسجين وإخراج ثاني أكسيد الكربون</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q37" value="C" class="ml-2 accent-blue-600"> ج. ينتهي الأنبوب الهضمي عند المعدة، والغذاء يتخزن فيها مدى الحياة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q37" value="D" class="ml-2 accent-blue-600"> د. وظيفته التخلص من اليوريا والفائض من الأدوية لنقلها عبر البول</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q38 (صعب) -->
+                <div id="q38" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 38 (الإخراج) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        لماذا تُعد الكليتان عنصراً محورياً في جهاز الإخراج واتزان الجسم معاً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q38" value="A" class="ml-2 accent-blue-600"> أ. لأنهما تفرزان الانسولين وتنظمان مستوى سكر الدم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q38" value="B" class="ml-2 accent-blue-600"> ب. لأنهما تصنعان خلايا الدم الحمراء فتسمحان بنقل الأكسجين كاملاً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q38" value="C" class="ml-2 accent-blue-600"> ج. لأنهما تتخلصان من اليوريا وفائض H+ والأدوية مع المحافظة على موازنة الماء والأملاح في الجسم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q38" value="D" class="ml-2 accent-blue-600"> د. لأنهما تخزنان البول بلا حدود فتمنعان تعب المثانة</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q39 (صعب) -->
+                <div id="q39" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 39 (فائض الماء) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        شرب شخص كمية كبيرة من سوائل رطب أكبر من طلب الجسم. ما التوقع الصحيح عن بوله بعد قليلاً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q39" value="A" class="ml-2 accent-blue-600"> أ. بول مركز صغير الحجم ناتج عن تجمع الأنسجة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q39" value="B" class="ml-2 accent-blue-600"> ب. بول كبير الحجم مخفف (قليل التركيز) للتخلص من فائض السوائل المتراكمة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q39" value="C" class="ml-2 accent-blue-600"> ج. لا يتغير حجم البول ولا تركيزه لأن الاتزان ثابت دائماً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q39" value="D" class="ml-2 accent-blue-600"> د. عدم إفراز البول إطلاقاً لأن الكليتين تتوقفان عن العمل مؤقتاً</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q40 (صعب) -->
+                <div id="q40" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 40 (البرودة) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        تعرض شخص لجو بارد قاسٍ لفترة طويلة. ما الاستجابة الصحيحة لأجهزة الجسم؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q40" value="A" class="ml-2 accent-blue-600"> أ. ارتجاف عضلي يرفع حجم الأيض بإطلاق حرارة إضافية، مع تضييق أوعية الجلد لمنع فقد الحرارة فتبدو البشرة شاحبة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q40" value="B" class="ml-2 accent-blue-600"> ب. توسع أوعية الجلد وأغرق قوي لتبريد الجسم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q40" value="C" class="ml-2 accent-blue-600"> ج. انخفاض حجم الأيض لانخفاض الحرارة فيبقى الجسم بارداً حتى النهاية</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q40" value="D" class="ml-2 accent-blue-600"> د. توقف إطلاق الحرارة نهائياً لأن الجسم لا يحتاجها في البرد</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q41 (صعب) -->
+                <div id="q41" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 41 (رد الفعل العكسي) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما المعنى الدقيق لمفهوم "رد الفعل العكسي" (التغذية المرتدة السالبة) في الاتزان البدني؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q41" value="A" class="ml-2 accent-blue-600"> أ. التوقف تماماً عن أي تغيير فجسم ثابت قسراً لا يتغير لي</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q41" value="B" class="ml-2 accent-blue-600"> ب. تكبير الانحراف عن القيمة المستهدفة وإبعاد الجسم عن المستوى الصحي</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q41" value="C" class="ml-2 accent-blue-600"> ج. إيقاف كل أجهزة الجسم فور انحراف أول قيمة عن طبيعيها</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q41" value="D" class="ml-2 accent-blue-600"> د. عكس اتجاه الانحراف عن القيمة المستهدفة وإعادته إلى الحد الطبيعي</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q42 (صعب) -->
+                <div id="q42" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 42 (ضغط الدم) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        انخفض ضغط دم شخص فجأة بعد فقد كمية كبيرة من السوائل. ما الترتيب الصحيح لاستجابة الأجهزة لرفع الضغط؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q42" value="A" class="ml-2 accent-blue-600"> أ. الكليتين تفرزان بول مخفف كثيراً ويختفي الشعور بالعطش</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q42" value="B" class="ml-2 accent-blue-600"> ب. تستجيب مجسات ضغط الدم، وتنقل المعلومات إلى الدماغ الذي يوجه الكليتين لإنتاج بول مركز ويثير الشعور بالعطش ليعود الضغط لطبيعته</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q42" value="C" class="ml-2 accent-blue-600"> ج. الرئتان تخزنان الماء المفقود وتعيدان ضخه إلى الدم مباشرة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q42" value="D" class="ml-2 accent-blue-600"> د. يوقف القلب الضخ مؤقتاً حتى يرتفع الضغط وحده دون الكليتين</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q43 (صعب) -->
+                <div id="q43" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 43 (مستويات التنظيم) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي الترتيبات التالية لمستويات التنظيم في الجسم صحيح من الأصغر إلى الأكبر؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q43" value="A" class="ml-2 accent-blue-600"> أ. خلايا ← ذرات ← أنسجة ← عضيات ← أجهزة ← أعضاء</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q43" value="B" class="ml-2 accent-blue-600"> ب. أنسجة ← خلايا ← عضيات ← ذرات ← أعضاء ← الجسم الكامل</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q43" value="C" class="ml-2 accent-blue-600"> ج. ذرات ← مركبات ← عضيات ← خلايا ← أنسجة ← أعضاء ← أجهزة ← الجسم الكامل</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q43" value="D" class="ml-2 accent-blue-600"> د. أجهزة ← أعضاء ← أنسجة ← خلايا ← عضيات ← مركبات ← ذرات</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q44 (صعب) -->
+                <div id="q44" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 44 (التكوين) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما التوصيف الصحيح لمراحل نشأة الجسم من خلية واحدة؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q44" value="A" class="ml-2 accent-blue-600"> أ. تتمايز الأنسجة أولاً ثم تشكل خلايا متخصصة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q44" value="B" class="ml-2 accent-blue-600"> ب. ينشأ الجسم من البويضة المخصبة (اللاقحة) الناتجة عن تخصيب البويضة برأس الحيوان المنوي، وتنقسم إلى 2 ثم 4 ثم 8 ثم تتمايز الخلايا لتكون الأنسجة والأعضاء والأجهزة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q44" value="C" class="ml-2 accent-blue-600"> ج. تُبنى الأنسجة أولاً من مواد غير خلوية ثم تظهر الخلايا لاحقاً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q44" value="D" class="ml-2 accent-blue-600"> د. تنشأ أجهزة الجسم مباشرة من مكونات ذاتها دون انقسام الخلية</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q45 (صعب) -->
+                <div id="q45" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-1">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 45 (مندل) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-1')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        نُشرت أعمال مندل في الوراثة عام 1860 ثم أُهملت لفترة. ما السبب الصحيح لتلك الإهمال؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q45" value="A" class="ml-2 accent-blue-600"> أ. لأنه أُهمل مرة بسبب تأثير أعمال داروين حتى عام 1900، وحينها أُعيد اكتشاف أعماله واعترف به مؤسساً لعلم الوراثة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q45" value="B" class="ml-2 accent-blue-600"> ب. لأن أعماله كانت خاطئة فسحبها العلماء نهائياً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q45" value="C" class="ml-2 accent-blue-600"> ج. لأن مندل توقف عن تجاربه ولم يكملها على البازلاء</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q45" value="D" class="ml-2 accent-blue-600"> د. لأن الأجهزة الحكومية منعته من نشر أبحاثه للمرة الثانية</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q46 (صعب) -->
+                <div id="q46" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-5">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 46 (مرض - سبب) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-5')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي الاقتران (مرض ← سبب) التالي صحيح تماماً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q46" value="A" class="ml-2 accent-blue-600"> أ. فقر الدم ← ارتفاع الهيموغلوبين في الدم</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q46" value="B" class="ml-2 accent-blue-600"> ب. باركنسون ← ارتفاع الدوبامين في الدماغ</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q46" value="C" class="ml-2 accent-blue-600"> ج. كوليرا ← ارتفاع الكولسترول في الشرايين</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q46" value="D" class="ml-2 accent-blue-600"> د. تصلب الشرايين ← ارتفاع الكولسترول في الدم، وكوليرا ← فقدان الماء بسبب الإسهال السائل</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q47 (صعب) -->
+                <div id="q47" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-4">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 47 (جهاز النقل) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-4')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أي خيار يعطي التعبير الصحيح لعناصر جهاز النقل ووظيفته؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q47" value="A" class="ml-2 accent-blue-600"> أ. القلب مضخة، مع شرايين وأوردة وشعيرات، ينقل الدم ناقلاً من الغذاء والأكسجين إلى الخلايا واستقبال فضلاتها</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q47" value="B" class="ml-2 accent-blue-600"> ب. الأوردة تضخ الدم إلى أجزاء الجسم كلها، والقلب مجرد مخزن لا يضخ شيئاً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q47" value="C" class="ml-2 accent-blue-600"> ج. جهاز النقل يتألف من الليمفا فقط، والقلب يخدم جهاز التنفس وحده</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q47" value="D" class="ml-2 accent-blue-600"> د. تصنع خلايا الدم جميعها في القلب ثم تنقل عبر الشرايين</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q48 (صعب) -->
+                <div id="q48" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 48 (الهورمونات) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما الدور الصحيح للهورمونات في تنسيق أجهزة الجسم؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q48" value="A" class="ml-2 accent-blue-600"> أ. جهاز إخراج إضافي للتخلص من الأملاح والفائض المائي أثقل البول</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q48" value="B" class="ml-2 accent-blue-600"> ب. منظّم لضغط الدم في السهر والإجهاد فقط</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q48" value="C" class="ml-2 accent-blue-600"> ج. جهاز التنسيق الرئيسي إلى جانب جهاز الأعصاب، وينقل جهاز النقل الهورمونات من غدها إلى أجهزتها المستهدفة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q48" value="D" class="ml-2 accent-blue-600"> د. أنسجة تفرز من الدماغ فقط، فليس لها أي علاقة بأجزاء الجسم الأخرى</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q49 (صعب) -->
+                <div id="q49" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-3">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 49 (النشاط الجسماني) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-3')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        أجرى شخص نشاطاً جسمانياً عنيفاً. أي الاستجابات تتوقع من أجهزة الجسم معاً؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q49" value="A" class="ml-2 accent-blue-600"> أ. تضييق أوعية الجلد وتباطؤ التنفس لحفظ الأكسجين</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q49" value="B" class="ml-2 accent-blue-600"> ب. إفراز العرق وتوسيع أوعية الجلد لخفض الحرارة الزائدة، مع تسارع التنفس وانقباضات القلب لتزويد العضلات بالأكسجين</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q49" value="C" class="ml-2 accent-blue-600"> ج. توقف العرق تماماً فور انتهاء النشاط لتعويض البرودة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q49" value="D" class="ml-2 accent-blue-600"> د. استناد الجسم عن كل آليات الاتزان أثناء المجهود</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
+                <!-- Q50 (صعب) -->
+                <div id="q50" class="question-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm transition space-y-3" data-target-sec="mat-sec-2">
+                    <div class="flex justify-between items-start">
+                        <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2.5 py-1 rounded-lg">سؤال 50 (الاتزان البدني) <span class="mr-1 bg-rose-100 text-rose-700 px-1.5 py-0.5 rounded-md">صعب</span></span>
+                        <button type="button" onclick="jumpToMaterial('mat-sec-2')" class="text-xs text-blue-600 hover:underline font-semibold">
+                            <i class="fa-solid fa-book-open ml-1"></i> المادة النظرية
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-800 leading-relaxed">
+                        ما المعنى الأدق لمفهوم الاتزان البدني في الإنسان؟
+                    </p>
+                    <div class="space-y-2 text-xs">
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q50" value="A" class="ml-2 accent-blue-600"> أ. توفير بيئة داخلية مستقرة نسبياً ومختلفة عن البيئة الخارجية المتقلبة، في حدود معينة تعين على حياة الخلايا</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q50" value="B" class="ml-2 accent-blue-600"> ب. تكافؤ البيئة الداخلية مع الخارجية بالتساوي تماماً</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q50" value="C" class="ml-2 accent-blue-600"> ج. فرض ثبات مطلق غير قابل للتغيير على كل القياسات الداخلية مهما تغيرت البيئة</label>
+                        <label class="q-option flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition"><input type="radio" name="q50" value="D" class="ml-2 accent-blue-600"> د. تخضع البيئة الداخلية للبيئة الخارجية وتتغير معها تغيراً مطابقاً</label>
+                    </div>
+                    <div class="q-feedback hidden p-3 rounded-xl text-xs font-semibold"></div>
+                </div>
+
                 <!-- Answer Actions -->
                 <div class="pt-4 flex flex-col sm:flex-row gap-3">
                     <button type="submit" class="w-full sm:flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl text-base shadow-lg transition active:scale-95 flex items-center justify-center gap-2">
@@ -1162,7 +1562,27 @@
             q27: "B",
             q28: "A",
             q29: "C",
-            q30: "B"
+            q30: "B",
+            q31: "C",
+            q32: "D",
+            q33: "A",
+            q34: "C",
+            q35: "B",
+            q36: "D",
+            q37: "A",
+            q38: "C",
+            q39: "B",
+            q40: "A",
+            q41: "D",
+            q42: "B",
+            q43: "C",
+            q44: "B",
+            q45: "A",
+            q46: "D",
+            q47: "A",
+            q48: "C",
+            q49: "B",
+            q50: "A"
         };
 
         // Interactive questions (matching lines, diagram fill-in, ordering, classifying, multi-select)
@@ -1374,7 +1794,7 @@
             }]}
         };
 
-        const QUESTION_IDS = Array.from({ length: 30 }, (_, i) => `q${i + 1}`);
+        const QUESTION_IDS = Array.from({ length: 50 }, (_, i) => `q${i + 1}`);
         const AR_LETTERS = { A: 'أ', B: 'ب', C: 'ج', D: 'د' };
         const LINE_COLORS = ['#2563eb', '#7c3aed', '#db2777', '#ea580c', '#0d9488', '#4f46e5', '#ca8a04'];
         const STORAGE_KEY = 'human_bio_prep_data_v2';
@@ -1409,7 +1829,27 @@
             q27: "سائل الليمفا يشبه الدم ببروتين أقل، وبه بيضاء فقط، ووظائفه: استرجاع السوائل للدم، وامتصاص الأحماض الدهنية والجليسرول في الأمعاء الدقيقة، والمناعة.",
             q28: "الهضم: أنبوب من الفم حتى الشرج (فم، مريء، معدة، أمعاء) مع غدد وعصارات، وظيفته الاستيعاب والطحن والتحليل من معقد إلى بسيط والامتصاص والنقل لجهاز النقل.",
             q29: "التنفس: أنف وتجويف أنف وبلعوم وحنجرة وقصبة ورئتان، وظيفته استيعاب O2 وإخراج CO2.",
-            q30: "الإخراج: كليتان على طرفي العمود الفقري وحالبان ومثانة وأحليل، وظيفته التخلص من اليوريا وفائض H+ والأدوية وموازنة الماء والأملاح."
+            q30: "الإخراج: كليتان على طرفي العمود الفقري وحالبان ومثانة وأحليل، وظيفته التخلص من اليوريا وفائض H+ والأدوية وموازنة الماء والأملاح.",
+            q31: "الانحراف هنا هو ارتفاع الجلوكوز، ويستجيب له هرمون الانسولين الذي يفعّل دخول الجلوكوز إلى الخلايا فينخفض التركيز ويعود الاتزان. الجلوكاجون يستجيب للانخفاض ويحلل الجلايكوجين.",
+            q32: "بومانت (1785-1853) درس فعالية المعدة والهضم لدى جندي أمريكي مصاب بجرح مفتوح، ومرينج ومينكوفسكي (1889) اكتشفا أسباب السكري باستئصال البنكرياس من الكلاب.",
+            q33: "الدم مؤلف من 55% بلازما و45% خلايا (خلايا دم حمراء وبيضاء وصفائح).",
+            q34: "اليوريا تتكون في الكبد من تفاعل الأمونيا مع ثاني أكسيد الكربون (نواتج تفكك الأحماض الأمينية)، وينقلها الدم إلى الكليتين لتخرج مع البول، وارتفاعها مؤشر مشكلة.",
+            q35: "سائل الليمفا يشبه الدم لكن بتركيز بروتينات أقل، ويحوي خلايا بيضاء فقط، ووظائفه: استرجاع السوائل المرشحة للدم، واستيعاب الأحماض الدهنية والجليسرول في الأمعاء الدقيقة، والمناعة.",
+            q36: "نقص الأكسجين يستدعي تسارع الشهيق والزفير لتعويض النقص، مع تسارع انقباضات القلب لضخ دم أكثر يحمل الأكسجين.",
+            q37: "جهاز الهضم أنبوب من الفم حتى الشرج (فم، مريء، معدة، أمعاء) تتصل به غدد تفرز عصارات هاضمة، ووظيفته الاستيعاب والتحليل من معقد إلى بسيط والامتصاص والنقل إلى جهاز النقل.",
+            q38: "الكليتان تخلصان الجسم من اليوريا وفائض H+ والأدوية وتحافظان على موازنة الماء والأملاح؛ لهذا هو العنصر المحوري في جهاز الإخراج والاتزان.",
+            q39: "فائض السوائل المستوعَبة متابعه بول كبير الحجم مخفف (قليل التركيز) يطرح الزائدة من الماء المتراكم.",
+            q40: "في البيئة الباردة: إطلاق حرارة إضافية برفع حجم الأيض (الارتجاف العضلي) وتضييق أوعية الجلد لمنع تسرب الحرارة، فتبدو البشرة شاحبة.",
+            q41: "رد الفعل العكسي (التغذية المرتدة السالبة) هو استجابة تعكس اتجاه الانحراف عن القيمة المستهدفة وتعيد التركيز إلى الحد الطبيعي، وهي أساس الاتزان البدني.",
+            q42: "استجابة ضغط الدم المنخفض: مجسات ضغط الدم تستشعر الانخفاض وتنقل المعلومات إلى الدماغ، فيوجه تعليمات للكليتين لإنتاج بول مركز (احتفاظ بالماء) ويثير الشعور بالعطش.",
+            q43: "الترتيب الصحيح من الأصغر: ذرات ← مركبات عضوية وغير عضوية ← عضيات ← خلايا ← أنسجة ← أعضاء ← أجهزة ← الجسم الكامل.",
+            q44: "ينشأ الجسم من خلية واحدة هي البويضة المخصبة (اللاقحة/الزيجوت)، تتضاعف 2 ثم 4 ثم 8 ثم تتمايز إلى أنسجة وأعضاء وأجهزة حتى مئات المليارات من الخلايا.",
+            q45: "أعمال مندل نُشرت عام 1860 وأُهملت لفترة بسبب سيطرة أفكار داروين، حتى عام 1900 حين أُعيد اكتشافها وأصبح مؤسس علم الوراثة.",
+            q46: "تصلب الشرايين سببه ارتفاع الكولسترول، والكوليرا سببها فقدان الماء بالإسهال؛ أما فقر الدم سببه نقص الهيموغلوبين وباركنسون نقص الدوبامين.",
+            q47: "جهاز النقل: القلب مضخة، يتألف من شرايين وأوردة وشعيرات، وينقل الدم (55% بلازما و45% خلايا) حاملاً الغذاء والأكسجين إلى الخلايا وجامعاً فضلاتها.",
+            q48: "الهورمونات جهاز تنسيق رئيسي إلى جانب الأعصاب، وينقل جهاز النقل الهورمونات من غدها إلى الأجهزة المستهدفة لتنسيق الاستجابات.",
+            q49: "النشاط الجسماني يرفع الحرارة فيُفرز العرق وتتوسع أوعية الجلد لخفضها، مع تسارع التنفس وانقباضات القلب لتزويد العضلات بالأكسجين.",
+            q50: "الاتزان البدني هو توفير بيئة داخلية مستقرة نسبياً ومختلفة عن البيئة الخارجية المتقلبة، في حدود معينة تعين على حياة الخلايا."
         };
 
         // Current User State
